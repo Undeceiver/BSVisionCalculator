@@ -8,12 +8,8 @@
         /*******************************
         // Player parameters
         *******************************/
-        double height_player_real; // Real height of the player (or rather, what they configured their game to).
-        double height_player_effective; // Effective player height, as recalculated by the game.
-        double height_camera; // Height at which the camera is.
-
-        /*******************************
-        // Map parameters
-        *******************************/
+        public double height_player_real; // Real height of the player (or rather, what they configured their game to).
+        public double height_player_effective; // Effective player height, as recalculated by the game.
+        public double height_camera; // Height at which the camera is.                
     }
 }
