@@ -5,6 +5,8 @@
         // This class represents one particular "reality" for a vision calculation process, where parameters that we consider to not change in the actual reality are fixed.
         // Note that we do not include parameters that appear in the general process here, only those that vary.
 
+        public VisionCalculationProcess process;
+
         /*******************************
         // Player parameters
         *******************************/
