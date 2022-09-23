@@ -14,7 +14,7 @@ namespace BSVisionCalculator.Pages
 
         public void OnGet()
         {
-
+            ViewData["somevalue"] = (2 + 4) * 136;            
         }
     }
 }
