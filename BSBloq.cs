@@ -1,17 +1,25 @@
 ﻿namespace BSVisionCalculator
 {
     public class BSBloq : BSObject
-    {
+    {        
+        public BSLane lane;
+        public BSRow row;
         public double width;
         public double height;
         public double depth; // We use the same object for the bloq as it moves over time. This value changes thus, as so do some others.
         public double time;
-        
-        public BSBloq(double width, double height, double time)
+                        
+        public BSBloq(double time, BSLane lane, BSRow row)
         {
-            this.width = width;
-            this.height = height;         
             this.time = time;
+            this.lane = lane;
+            this.row = row;            
+        }
+
+        public override void updatePosition(VisionCalculationSituation situation)
+        {
+            this.width = this.lane.width;
+            this.height = this.row.getRealHeight(situation.reality);
         }
 
         // This works for both the blocker and the blocked

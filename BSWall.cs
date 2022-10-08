@@ -2,6 +2,12 @@
 {
     public class BSWall : BSObject
     {
+
+        public BSLane lane_left;
+        public BSLane lane_right;
+        public BSWallHeight height_level_top;
+        public BSWallHeight height_level_bottom;
+
         public double width_left;
         public double width_right;
         public double height_top;
@@ -11,14 +17,22 @@
         public double time_start;
         public double time_end;
 
-        public BSWall(double width_left, double width_right, double height_top, double height_bottom, double time_start, double time_end)
+        public BSWall(double time_start, double time_end, BSLane lane_left, BSLane lane_right, BSWallHeight height_level_top, BSWallHeight height_level_bottom)
         {
-            this.width_left = width_left;
-            this.width_right = width_right;
-            this.height_top = height_top;
-            this.height_bottom = height_bottom;
             this.time_start = time_start;
             this.time_end = time_end;
+            this.lane_left = lane_left;
+            this.lane_right = lane_right;
+            this.height_level_top = height_level_top;
+            this.height_level_bottom = height_level_bottom;
+        }
+
+        public override void updatePosition(VisionCalculationSituation situation)
+        {
+            this.width_left = this.lane_left.width;
+            this.width_right = this.lane_right.width;
+            this.height_top = this.height_level_top.getWallHeight(situation.reality);
+            this.height_bottom = this.height_level_bottom.getWallHeight(situation.reality);
         }
 
         public override void updateDepth(VisionCalculationSituation situation)

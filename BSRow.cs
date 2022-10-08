@@ -5,7 +5,7 @@ namespace BSVisionCalculator
     // This contains standard rows
     public class BSRow
     {
-        public double height; // This is relative to effective player height!!
+        public double height; // Relative to player effective position
 
         public static BSRow BOTTOM = new BSRow(0);
         public static BSRow MID = new BSRow(1);
@@ -45,6 +45,11 @@ namespace BSVisionCalculator
                     return height;
                 }
             }
+        }
+
+        public double getRealHeight(VisionCalculationReality reality)
+        {
+            return reality.height_player_effective + this.height;
         }
     }
 }

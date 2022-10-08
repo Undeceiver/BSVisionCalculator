@@ -2,6 +2,8 @@
 {
     public abstract class BSObject
     {
+        public VisionCalculationSituation situation;
+
         // The main purpose of this class is to be a common super class of walls and bloqs
         public double anglevalue_left;
         public double anglevalue_right;
@@ -14,11 +16,14 @@
             return (measure_object - measure_player) / z;
         }
 
+        public abstract void updatePosition(VisionCalculationSituation situation);
         public abstract void updateDepth(VisionCalculationSituation situation);
         public abstract void updateAngleValues(VisionCalculationSituation situation);
-
+        
         public void updateSituation(VisionCalculationSituation situation)
         {
+            this.situation = situation;
+            this.updatePosition(situation);
             this.updateDepth(situation);
             this.updateAngleValues(situation);
         }
