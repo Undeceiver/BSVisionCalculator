@@ -6,26 +6,7 @@
         // Simple and to the point.
         public static VisionCalculationProcess getTemplateProcess1()
         {
-            VisionCalculationProcess process = new VisionCalculationProcess();
-
-            process.height_player_min = 1.8;
-            process.height_player_max = 1.8;
-            process.height_squat = GlobalParameters.height_squat_default;
-            process.width_lean = GlobalParameters.width_lean_default;
-            process.width_squatlean = GlobalParameters.width_squatlean_default;
-            process.time_hardvb_first_min = 0.5;
-            process.time_hardvb_last_max = 0.1;
-            process.time_hardvb_process_min = 0.4;
-            process.time_inline_first_min = 0;
-            process.time_inline_last_max = 100;
-            process.time_inline_process_min = 0;
-            process.time_granularity = GlobalParameters.time_granularity_default;
-
-            process.bpm = 120;
-            process.njs = 16;
-            process.hjd = 1.5;
-            process.jd = 12; // This should be calculated.
-            process.time_reaction = 0.75; // This should be calculated too.
+            VisionCalculationProcess process = new VisionCalculationProcess(120,16,1.5);
 
             return process;
         }
@@ -33,27 +14,8 @@
         // Very long offset
         public static VisionCalculationProcess getTemplateProcess2()
         {
-            VisionCalculationProcess process = new VisionCalculationProcess();
-
-            process.height_player_min = 1.8;
-            process.height_player_max = 1.8;
-            process.height_squat = GlobalParameters.height_squat_default;
-            process.width_lean = GlobalParameters.width_lean_default;
-            process.width_squatlean = GlobalParameters.width_squatlean_default;
-            process.time_hardvb_first_min = 0.5;
-            process.time_hardvb_last_max = 0.1;
-            process.time_hardvb_process_min = 0.4;
-            process.time_inline_first_min = 0;
-            process.time_inline_last_max = 100;
-            process.time_inline_process_min = 0;
-            process.time_granularity = GlobalParameters.time_granularity_default;
-
-            process.bpm = 120;
-            process.njs = 16;
-            process.hjd = 10;
-            process.jd = 80; // This should be calculated.
-            process.time_reaction = 5; // This should be calculated too.
-
+            VisionCalculationProcess process = new VisionCalculationProcess(120,16,10);
+            
             return process;
         }
 

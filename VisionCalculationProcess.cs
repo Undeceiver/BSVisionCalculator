@@ -4,9 +4,29 @@
     {
         // This class represents one big calculation of vision blocks, on a single map but including multiple variable parameters.
 
-        public VisionCalculationProcess()
+        // Normally it just uses default values. The values can be modified manually.
+        public VisionCalculationProcess(double bpm, double njs, double hjd)
         {
+            this.height_player_min = GlobalParameters.height_player_min_default;
+            this.height_player_max = GlobalParameters.height_player_max_default;
+            this.height_squat = GlobalParameters.height_squat_default;
+            this.width_lean = GlobalParameters.width_lean_default;
+            this.width_squatlean = GlobalParameters.width_squatlean_default;
+            this.time_granularity = GlobalParameters.time_granularity_default;
 
+            this.bpm = bpm;
+            this.njs = njs;
+            this.hjd = hjd;
+
+            this.time_reaction = this.hjd * 60 / this.bpm;
+            this.jd = this.njs * this.time_reaction;
+
+            this.time_hardvb_first_min = GlobalParameters.time_hardvb_first_min_wrt_reaction_time_default + this.time_reaction;
+            this.time_hardvb_last_max = GlobalParameters.time_hardvb_last_max_default;
+            this.time_hardvb_process_min = GlobalParameters.time_hardvb_process_min_default;
+            this.time_inline_first_min = GlobalParameters.time_inline_first_min_default;
+            this.time_inline_last_max = GlobalParameters.time_inline_last_max_wrt_reaction_time_default + this.time_reaction;
+            this.time_inline_process_min = GlobalParameters.time_inline_process_min_default;
         }
 
         /*******************************
