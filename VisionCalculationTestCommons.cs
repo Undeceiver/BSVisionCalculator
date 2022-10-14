@@ -59,22 +59,14 @@
 
         public static VisionCalculationReality getTemplateReality1()
         {
-            VisionCalculationReality reality = new VisionCalculationReality(getTemplateProcess1());
-
-            reality.height_player_real = 1.8;
-            reality.height_player_effective = 1.8; // Should be calculated
-            reality.height_camera = 1.7; // Should be calculated
+            VisionCalculationReality reality = new VisionCalculationReality(getTemplateProcess1(),1.8);
 
             return reality;
         }
         
         public static VisionCalculationReality getTemplateReality2()
         {
-            VisionCalculationReality reality = new VisionCalculationReality(getTemplateProcess2());
-
-            reality.height_player_real = 1.8;
-            reality.height_player_effective = 1.8; // Should be calculated
-            reality.height_camera = 1.7; // Should be calculated
+            VisionCalculationReality reality = new VisionCalculationReality(getTemplateProcess2(),1.8);
 
             return reality;
         }
