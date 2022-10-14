@@ -18,8 +18,18 @@
 
         public override void updatePosition(VisionCalculationSituation situation)
         {
+            double height_row;
+
             this.width = this.lane.width;
-            this.height = this.row.getRealHeight(situation.reality);
+            height_row = this.row.getRealHeight(situation.reality);
+
+            // Spawn parabola
+            this.height = height_row + (situation.reality.height_player_effective - GlobalParameters.height_row_mid_top - GlobalParameters.height_row_bottom_mid - height_row) * (this.depth * this.depth) / (situation.reality.process.jd * situation.reality.process.jd);
+            /*System.Diagnostics.Debug.WriteLine("SOME BLOCK");
+            System.Diagnostics.Debug.WriteLine("Target height:" + height_row);
+            System.Diagnostics.Debug.WriteLine("Depth:" + this.depth);
+            System.Diagnostics.Debug.WriteLine("JD:" + situation.reality.process.jd);
+            System.Diagnostics.Debug.WriteLine("Current height:" + this.height);*/
         }
 
         // This works for both the blocker and the blocked
@@ -33,7 +43,7 @@
             double width_left = this.width - GlobalParameters.size_bloq / 2;
             double width_right = this.width + GlobalParameters.size_bloq / 2;
             double height_top = this.height + GlobalParameters.size_bloq / 2;
-            double height_bottom = this.height + GlobalParameters.size_bloq / 2;
+            double height_bottom = this.height - GlobalParameters.size_bloq / 2;
             double depth_start = this.depth - GlobalParameters.size_bloq / 2;
             double depth_end = this.depth + GlobalParameters.size_bloq / 2;
 
@@ -50,6 +60,6 @@
             this.anglevalue_right = Math.Max(anglevalue_right_start, anglevalue_right_end);
             this.anglevalue_top = Math.Max(anglevalue_top_start, anglevalue_top_end);
             this.anglevalue_bottom = Math.Max(anglevalue_bottom_start, anglevalue_bottom_end);
-        }
+        }        
     }
 }

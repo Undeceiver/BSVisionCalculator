@@ -20,7 +20,7 @@
         {
             this.reality = reality;
             this.posture = posture;
-            this.height_player = this.posture.y;
+            this.height_player = this.posture.y + this.reality.height_camera;
             this.width_player = this.posture.x;
             this.time_player = time_player;
             this.blocker = blocker;            

@@ -4,6 +4,11 @@
     {
         // This class represents one big calculation of vision blocks, on a single map but including multiple variable parameters.
 
+        public VisionCalculationProcess()
+        {
+
+        }
+
         /*******************************
         // Configurable parameters (minimums/maximums/thresholds/etc)
         *******************************/

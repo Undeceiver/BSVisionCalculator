@@ -22,9 +22,9 @@
         
         public void updateSituation(VisionCalculationSituation situation)
         {
-            this.situation = situation;
-            this.updatePosition(situation);
+            this.situation = situation;            
             this.updateDepth(situation);
+            this.updatePosition(situation);
             this.updateAngleValues(situation);
         }
     }
