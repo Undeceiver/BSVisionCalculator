@@ -70,5 +70,10 @@
 
             return this.is_blocked;
         }
+
+        public bool checkSpawning()
+        {
+            return this.blocker.checkSpawning(this) || this.blocked.checkSpawning(this);
+        }
     }
 }

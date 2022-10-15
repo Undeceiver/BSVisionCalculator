@@ -59,5 +59,10 @@
             this.anglevalue_top = Math.Max(anglevalue_top_start, anglevalue_top_end);
             this.anglevalue_bottom = Math.Max(anglevalue_bottom_start, anglevalue_bottom_end);
         }
+
+        public override bool checkSpawning(VisionCalculationSituation situation)
+        {
+            return false;
+        }
     }
 }

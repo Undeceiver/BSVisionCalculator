@@ -60,6 +60,15 @@
             this.anglevalue_right = Math.Max(anglevalue_right_start, anglevalue_right_end);
             this.anglevalue_top = Math.Max(anglevalue_top_start, anglevalue_top_end);
             this.anglevalue_bottom = Math.Max(anglevalue_bottom_start, anglevalue_bottom_end);
-        }        
+        }
+
+        public override bool checkSpawning(VisionCalculationSituation situation)
+        {
+            double height_row = this.row.getRealHeight(situation.reality);
+
+            double height_diff = Math.Abs(this.height = height_row);
+
+            return (height_diff > Math.Max(GlobalParameters.height_row_bottom_mid,GlobalParameters.height_row_mid_top))
+        }
     }
 }

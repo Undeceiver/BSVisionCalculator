@@ -27,5 +27,7 @@
             this.updatePosition(situation);
             this.updateAngleValues(situation);
         }
+
+        public abstract bool checkSpawning(VisionCalculationSituation situation);
     }
 }
