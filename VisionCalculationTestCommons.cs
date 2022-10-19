@@ -14,7 +14,7 @@
         // Very long offset
         public static VisionCalculationProcess getTemplateProcess2()
         {
-            VisionCalculationProcess process = new VisionCalculationProcess(120,16,10);
+            VisionCalculationProcess process = new VisionCalculationProcess(120,16,100);
             
             return process;
         }
@@ -38,7 +38,14 @@
             return "<p>Player X: " + situation.width_player + ", Y: " + situation.height_player + "</p>" + 
                 "<p>Blocker X: " + situation.blocker_bloq.width + ", Y: " + situation.blocker_bloq.height + ", Z: " + situation.blocker_bloq.depth + ", H. ANGLES: " + situation.blocker_bloq.anglevalue_left + "//" + situation.blocker_bloq.anglevalue_right + ", V. ANGLES: " + situation.blocker_bloq.anglevalue_top + "//" + situation.blocker_bloq.anglevalue_bottom + "</p>" + 
                 "<p>Blocked X: " + situation.blocked.width + ", Y: " + situation.blocked.height + ", Z: " + situation.blocked.depth + ", H. ANGLES: " + situation.blocked.anglevalue_left + "//" + situation.blocked.anglevalue_right + ", V. ANGLES: " + situation.blocked.anglevalue_top + "//" + situation.blocked.anglevalue_bottom + "</p>" + 
-                "BLOCKED: " + situation.checkBlocked();
+                "<p>BLOCKED: " + situation.checkBlocked() + "</p>";
+        }
+
+        public static String getRealTimeVisionStateString(RealTimeVisionState state)
+        {
+            return
+                "<p>Vision blocked: " + state.vision_blocked + "</p>" +
+                "<p>Spawning: " + state.spawning + "</p>";
         }
 
         public static String getTestResult(Object expected, Object obtained)

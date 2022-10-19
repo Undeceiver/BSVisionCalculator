@@ -49,7 +49,7 @@ namespace BSVisionCalculator.Pages
             VisionCalculationReality reality = VisionCalculationTestCommons.getTemplateReality1();
 
             BSBloq blocker = new BSBloq(0.35, BSLane.NEAR_RIGHT, BSRow.MID);
-            BSBloq blocked = new BSBloq(0.5, BSLane.FAR_RIGHT, BSRow.BOTTOM);
+            BSBloq blocked = new BSBloq(0.8, BSLane.FAR_RIGHT, BSRow.BOTTOM);
 
             BloqBloqSituation situation = new BloqBloqSituation(reality, PlayerPosture.CENTRED, 0, blocker, blocked);
 

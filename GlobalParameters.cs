@@ -25,7 +25,7 @@ namespace BSVisionCalculator
         public const double height_wall_level = 0.6; // Height difference per level for walls.
 
         // Bloq geometry
-        public const double size_bloq = 0.5; // Size of bloqs. This is considered to be from any angle, and approximations / slightly reduced values are fine.
+        public const double size_bloq = 0.35; // Size of bloqs. This is considered to be from any angle, and approximations / slightly reduced values are fine.
 
         // Spawn geometry
         public const double height_bloq_spawn_level = 0.6; // Vertical distance between bloqs when they spawn and are on same column at the same time.
@@ -52,7 +52,87 @@ namespace BSVisionCalculator
         public const double time_inline_first_min_default = 0; // Minimum amount of time for first visualization for inlines.
         public const double time_inline_last_max_wrt_reaction_time_default = 0; // Maximum time that the object can disappear before having to hit it, with respect to the reaction time.
         public const double time_inline_process_min_default = 0; // Minimum amount of time that we need an object to remain in vision to process it, in inline circumstances.
-        public const double time_granularity_default = 0.025; // Granularity of time to consider in calculations and algorithms.
+        public const double time_granularity_default = 0.005; // Granularity of time to consider in calculations and algorithms.
 
+
+        public static double getBlockerTime(BSObject obj)
+        {
+            if (obj is BSWall)
+            {
+                BSWall wall = (BSWall)obj;
+
+                return wall.time_end;
+            }
+            else if (obj is BSBloq)
+            {
+                BSBloq bloq = (BSBloq)obj;
+
+                return bloq.time;
+            }
+            else
+            {
+                throw new Exception("Object is neither wall nor bloq!!");
+            }
+        }
+
+        public static void setBlockerTime(BSObject obj, double time)
+        {
+            if (obj is BSWall)
+            {
+                BSWall wall = (BSWall)obj;
+
+                wall.time_end = time;
+            }
+            else if (obj is BSBloq)
+            {
+                BSBloq bloq = (BSBloq)obj;
+
+                bloq.time = time;
+            }
+            else
+            {
+                throw new Exception("Object is neither wall nor bloq!!");
+            }
+        }
+
+        public static double getBlockedTime(BSObject obj)
+        {
+            if (obj is BSWall)
+            {
+                BSWall wall = (BSWall)obj;
+
+                return wall.time_start;
+            }
+            else if (obj is BSBloq)
+            {
+                BSBloq bloq = (BSBloq)obj;
+
+                return bloq.time;
+            }
+            else
+            {
+                throw new Exception("Object is neither wall nor bloq!!");
+            }
+        }
+
+        public static void setBlockedTime(BSObject obj, double time)
+        {
+            if (obj is BSWall)
+            {
+                BSWall wall = (BSWall)obj;
+
+                wall.time_start = time;
+            }
+            else if (obj is BSBloq)
+            {
+                BSBloq bloq = (BSBloq)obj;
+
+                bloq.time = time;
+            }
+            else
+            {
+                throw new Exception("Object is neither wall nor bloq!!");
+            }
+        }
     }
 }

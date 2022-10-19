@@ -16,6 +16,11 @@
             this.row = row;            
         }
 
+        public double getRowHeight()
+        {
+            return this.row.getRealHeight(this.situation.reality);
+        }
+
         public override void updatePosition(VisionCalculationSituation situation)
         {
             double height_row;
@@ -44,8 +49,9 @@
             double width_right = this.width + GlobalParameters.size_bloq / 2;
             double height_top = this.height + GlobalParameters.size_bloq / 2;
             double height_bottom = this.height - GlobalParameters.size_bloq / 2;
-            double depth_start = this.depth - GlobalParameters.size_bloq / 2;
-            double depth_end = this.depth + GlobalParameters.size_bloq / 2;
+            // Ignore depth
+            double depth_start = this.depth; //- GlobalParameters.size_bloq / 2;
+            double depth_end = this.depth; // + GlobalParameters.size_bloq / 2;
 
             double anglevalue_left_start = calculateAngleValue(width_left, situation.width_player, depth_start);
             double anglevalue_left_end = calculateAngleValue(width_left, situation.width_player, depth_end);
@@ -66,9 +72,9 @@
         {
             double height_row = this.row.getRealHeight(situation.reality);
 
-            double height_diff = Math.Abs(this.height = height_row);
+            double height_diff = Math.Abs(this.height - height_row);
 
-            return (height_diff > Math.Max(GlobalParameters.height_row_bottom_mid,GlobalParameters.height_row_mid_top))
+            return (height_diff > Math.Max(GlobalParameters.height_row_bottom_mid, GlobalParameters.height_row_mid_top));
         }
     }
 }
