@@ -40,6 +40,18 @@
             bool blocked_horizontal;
             bool blocked_vertical;
 
+            /*
+            System.Diagnostics.Debug.WriteLine("Blocker Left: " + blocker.anglevalue_left);
+            System.Diagnostics.Debug.WriteLine("Blocked Left: " + blocked.anglevalue_left);
+            System.Diagnostics.Debug.WriteLine("Blocker Right: " + blocker.anglevalue_right);
+            System.Diagnostics.Debug.WriteLine("Blocked Right: " + blocked.anglevalue_right);
+            System.Diagnostics.Debug.WriteLine("Blocker Top: " + blocker.anglevalue_top);
+            System.Diagnostics.Debug.WriteLine("Blocked Top: " + blocked.anglevalue_top);
+            System.Diagnostics.Debug.WriteLine("Blocker Bottom: " + blocker.anglevalue_bottom);
+            System.Diagnostics.Debug.WriteLine("Blocked Bottom: " + blocked.anglevalue_bottom);
+            */
+
+
             if (blocked.anglevalue_left >= blocker.anglevalue_left && blocked.anglevalue_left <= blocker.anglevalue_right)
             {
                 blocked_horizontal = true;
@@ -67,6 +79,10 @@
             }
 
             this.is_blocked = blocked_horizontal && blocked_vertical;
+
+            /*
+            System.Diagnostics.Debug.WriteLine("Blocked? " + is_blocked);
+            */
 
             return this.is_blocked;
         }

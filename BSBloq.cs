@@ -30,11 +30,14 @@
 
             // Spawn parabola
             this.height = height_row + (situation.reality.height_player_effective - GlobalParameters.height_row_mid_top - GlobalParameters.height_row_bottom_mid - height_row) * (this.depth * this.depth) / (situation.reality.process.jd * situation.reality.process.jd);
-            /*System.Diagnostics.Debug.WriteLine("SOME BLOCK");
+
+            /*
+            System.Diagnostics.Debug.WriteLine("SOME BLOCK");
             System.Diagnostics.Debug.WriteLine("Target height:" + height_row);
-            System.Diagnostics.Debug.WriteLine("Depth:" + this.depth);
-            System.Diagnostics.Debug.WriteLine("JD:" + situation.reality.process.jd);
-            System.Diagnostics.Debug.WriteLine("Current height:" + this.height);*/
+            System.Diagnostics.Debug.WriteLine("Depth:" + this.depth);            
+            System.Diagnostics.Debug.WriteLine("Current height:" + this.height);
+            System.Diagnostics.Debug.WriteLine("Width right:" + this.width + GlobalParameters.size_bloq / 2);
+            */
         }
 
         // This works for both the blocker and the blocked
@@ -53,6 +56,13 @@
             double depth_start = this.depth; //- GlobalParameters.size_bloq / 2;
             double depth_end = this.depth; // + GlobalParameters.size_bloq / 2;
 
+            /*
+            System.Diagnostics.Debug.WriteLine("CALCULATING ANGLE VALUE FOR BLOQ");
+            System.Diagnostics.Debug.WriteLine("Width right: " + width_right);
+            System.Diagnostics.Debug.WriteLine("Depth start: " + depth_start);
+            System.Diagnostics.Debug.WriteLine("Depth end: " + depth_end);
+            */
+
             double anglevalue_left_start = calculateAngleValue(width_left, situation.width_player, depth_start);
             double anglevalue_left_end = calculateAngleValue(width_left, situation.width_player, depth_end);
             double anglevalue_right_start = calculateAngleValue(width_right, situation.width_player, depth_start);
@@ -62,10 +72,19 @@
             double anglevalue_bottom_start = calculateAngleValue(height_bottom, situation.height_player, depth_start);
             double anglevalue_bottom_end = calculateAngleValue(height_bottom, situation.height_player, depth_end);
 
+            /*
+            System.Diagnostics.Debug.WriteLine("Angle value right start: " + anglevalue_right_start);
+            System.Diagnostics.Debug.WriteLine("Angle value right end: " + anglevalue_right_end);
+            */
+
             this.anglevalue_left = Math.Min(anglevalue_left_start, anglevalue_left_end);
             this.anglevalue_right = Math.Max(anglevalue_right_start, anglevalue_right_end);
             this.anglevalue_top = Math.Max(anglevalue_top_start, anglevalue_top_end);
             this.anglevalue_bottom = Math.Max(anglevalue_bottom_start, anglevalue_bottom_end);
+
+            /*
+            System.Diagnostics.Debug.WriteLine("Angle value right: " + this.anglevalue_right);
+            */
         }
 
         public override bool checkSpawning(VisionCalculationSituation situation)

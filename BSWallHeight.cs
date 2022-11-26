@@ -13,7 +13,7 @@
         // Index starts from the bottom, up to 5 (in principle)
         public double getWallHeight(VisionCalculationReality reality)
         {
-            double height = GlobalParameters.height_wall_min + this.index * GlobalParameters.height_wall_level;
+            double height = GlobalParameters.height_wall_min + this.index * GlobalParameters.height_wall_level + reality.height_player_effective - GlobalParameters.height_player_std;
 
             height = Math.Max(GlobalParameters.height_wall_min, height);
 

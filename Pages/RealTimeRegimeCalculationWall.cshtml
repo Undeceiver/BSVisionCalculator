@@ -1,7 +1,7 @@
 ﻿@page
-@model BSVisionCalculator.Pages.RealTimeRegimeCalculationModel
+@model BSVisionCalculator.Pages.RealTimeRegimeCalculationWallModel
 @{
-    ViewData["Title"] = "Calculate real time vision regimes (bloq-bloq)";
+    ViewData["Title"] = "Calculate real time vision regimes (wall-bloq)";
 }
 
 <div class="dataform" content="width=device-width">
@@ -45,13 +45,13 @@
         </p>
         <h2>Relative position</h2>
         <p class="formfield">
-            <label>Time between blocks (beats)</label>
+            <label>Time between objects (beats)</label>
             <input type="number" name="time_distance" step="0.01" min="0" max="100000" value="0.5"/>
         </p>
-        <h2>Blocker bloq (in front)</h2>
+        <h2>Blocker wall (in front)</h2>
         <p class="formfield">
-            <label>Lane</label>
-            <select name="blocker_lane">
+            <label>Left-most Lane</label>
+            <select name="blocker_left_lane">
                 <option value="FAR_LEFT">Far left</option>
                 <option value="NEAR_LEFT">Middle left</option>
                 <option value="NEAR_RIGHT">Middle right</option>
@@ -59,12 +59,37 @@
             </select>
         </p>
         <p class="formfield">
-            <label>Row</label>
-            <select name="blocker_row">                
-                <option value="BOTTOM">Bottom</option>
-                <option value="MID">Middle</option>
-                <option value="TOP">Top</option>
+            <label>Right-most Lane</label>
+            <select name="blocker_right_lane">
+                <option value="FAR_LEFT">Far left</option>
+                <option value="NEAR_LEFT">Middle left</option>
+                <option value="NEAR_RIGHT">Middle right</option>
+                <option value="FAR_RIGHT">Far right</option>
             </select>
+        </p>
+        <p class="formfield">
+            <label>Base Height</label>
+            <select name="blocker_bottom_height">                
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>                
+            </select>
+        </p>
+        <p class="formfield">
+            <label>Top Height</label>
+            <select name="blocker_top_height">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </p>
+        <p class="formfield">
+            <label>Duration (beats)</label>
+            <input type="number" name="blocker_duration" step="0.01" min="0" max="100000" value="0" />
         </p>
         <h2>Blocked bloq (behind)</h2>
         <p class="formfield">
@@ -114,7 +139,7 @@
         $(function () {
             $('#submit').on('click', function (evt) {
                 evt.preventDefault();
-                $.post('/RealTimeRegimeCalculationAjax', $('form').serialize(), function (data) {
+                $.post('/RealTimeRegimeCalculationWallAjax', $('form').serialize(), function (data) {
                     $('#result').replaceWith(data)
                 });
             });
