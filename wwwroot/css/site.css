@@ -16,3 +16,20 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+form {
+    display: table;
+}
+
+p {
+    display: table-row;
+}
+
+label {
+    display: table-cell;
+}
+
+input {
+    display: table-cell;
+}
+

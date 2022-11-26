@@ -1,0 +1,123 @@
+﻿@page
+@model BSVisionCalculator.Pages.RealTimeRegimeCalculationModel
+@{
+    ViewData["Title"] = "Calculate real time vision regimes";
+}
+
+<div class="dataform" content="width=device-width">
+    <h1 class="formtitle">Vision situation</h1>
+    <form method="post">
+        <h2>Map parameters</h2>
+        <fieldset id="map">
+        <p class="formfield">
+            <label>BPM</label>
+            <input type="number" name="bpm" id="bpm" step="0.001" min="1" max="10000" value="120"/>
+        </p>
+        <p class="formfield">
+            <label>NJS</label>
+            <input type="number" name="njs" step="0.05" min="0.5" max="50" value="16" />
+        </p>
+        <p class="formfield">
+            <label>HJD</label>
+            <input type="number" name="hjd" id="hjd" step="0.05" min="0.05" max="10000" value="1.5" />
+        </p>
+        <p class="formfield">
+            <label>Reaction time (ms)</label>
+            <input type="number" name="rt" id="rt" value="750" disabled/>
+        </p>
+        </fieldset>
+        <h2>Player parameters</h2>
+        <p class="formfield">
+            <label>Player height</label>
+            <input type="number" name="height_player" step="0.1" min="0.5" max="4" value="1.8"/>            
+        </p>
+        <h2>Posture</h2>
+        <p class="formfield">
+            <label>Player posture</label>
+            <select name="posture">
+                <option value="CENTRED">Centred</option>
+                <option value="LEFT">Leaning left</option>
+                <option value="RIGHT">Leaning right</option>
+                <option value="SQUAT">Crouching</option>
+                <option value="SQUATLEFT">Crouching left</option>
+                <option value="SQUATRIGHT">Crouching right</option>
+            </select>
+        </p>
+        <h2>Relative position</h2>
+        <p class="formfield">
+            <label>Time between blocks (beats)</label>
+            <input type="number" name="time_distance" step="0.01" min="0" max="100000" value="0.5"/>
+        </p>
+        <h2>Blocker bloq (in front)</h2>
+        <p class="formfield">
+            <label>Lane</label>
+            <select name="blocker_lane">
+                <option value="FAR_LEFT">Far left</option>
+                <option value="NEAR_LEFT">Middle left</option>
+                <option value="NEAR_RIGHT">Middle right</option>
+                <option value="FAR_RIGHT">Far right</option>
+            </select>
+        </p>
+        <p class="formfield">
+            <label>Row</label>
+            <select name="blocker_row">                
+                <option value="BOTTOM">Bottom</option>
+                <option value="MID">Middle</option>
+                <option value="TOP">Top</option>
+            </select>
+        </p>
+        <h2>Blocked bloq (behind)</h2>
+        <p class="formfield">
+            <label>Lane</label>
+            <select name="blocked_lane">
+                <option value="FAR_LEFT">Far left</option>
+                <option value="NEAR_LEFT">Middle left</option>
+                <option value="NEAR_RIGHT">Middle right</option>
+                <option value="FAR_RIGHT">Far right</option>
+            </select>
+        </p>
+        <p class="formfield">
+            <label>Row</label>
+            <select name="blocked_row">
+                <option value="BOTTOM">Bottom</option>
+                <option value="MID">Middle</option>
+                <option value="TOP">Top</option>
+            </select>
+        </p>
+        <button class="btn btn-primary" id="submit">Calculate Vision</button>
+    </form>
+</div>
+<div id="result">
+    
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#bpm').on('change', function (evt) {
+                $.post('/ReactionTimeAjax', $('form').serialize(), function (data) {
+                    $('#rt').replaceWith(data)
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#hjd').on('change', function (evt) {
+                $.post('/ReactionTimeAjax', $('form').serialize(), function (data) {
+                    $('#rt').replaceWith(data)
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#submit').on('click', function (evt) {
+                evt.preventDefault();
+                $.post('/RealTimeRegimeCalculationAjax', $('form').serialize(), function (data) {
+                    $('#result').replaceWith(data)
+                });
+            });
+        });
+    </script>
+}

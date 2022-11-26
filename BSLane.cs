@@ -8,11 +8,35 @@
         public static BSLane FAR_LEFT = new BSLane(0);
         public static BSLane NEAR_LEFT = new BSLane(1);
         public static BSLane NEAR_RIGHT = new BSLane(2);
-        public static BSLane FAR_RIGHT = new BSLane(3);
+        public static BSLane FAR_RIGHT = new BSLane(3);        
 
         public BSLane(double width)
         {
             this.width = width;
+        }
+
+        public static BSLane fromString(String lane_str)
+        {
+            if (lane_str == "FAR_LEFT")
+            {
+                return FAR_LEFT;
+            }
+            else if (lane_str == "NEAR_LEFT")
+            {
+                return NEAR_LEFT;
+            }
+            else if (lane_str == "NEAR_RIGHT")
+            {
+                return NEAR_RIGHT;
+            }
+            else if (lane_str == "FAR_RIGHT")
+            {
+                return FAR_RIGHT;
+            }
+            else
+            {
+                throw new Exception("Lane description cannot be solved!");
+            }
         }
 
         // 0-indexed, like the in-game maps

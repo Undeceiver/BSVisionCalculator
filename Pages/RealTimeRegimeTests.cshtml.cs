@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BSVisionCalculator.Pages
 {
-    public class RealTimeVisionStateTestsModel : PageModel
+    public class RealTimeRegimeTestsModel : PageModel
     {
         public void OnGet()
         {
@@ -17,7 +17,7 @@ namespace BSVisionCalculator.Pages
 
         public String test1()
         {
-            // Spawn parallel
+            // Spawn parallel - No vision block
             VisionCalculationReality reality = VisionCalculationTestCommons.getTemplateReality1();
 
             BSBloq blocker = new BSBloq(0.2, BSLane.FAR_RIGHT, BSRow.MID);
@@ -25,11 +25,12 @@ namespace BSVisionCalculator.Pages
 
             BloqBloqSituation situation = new BloqBloqSituation(reality, PlayerPosture.CENTRED, 0, blocker, blocked);
 
-            RealTimeVisionState state = new RealTimeVisionState(situation);
+            RealTimeRegimeCalculation calculation = new RealTimeRegimeCalculation(situation);
 
-            return VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeVisionStateString(state) +
-                "<p>Blocked test: " + VisionCalculationTestCommons.getTestResult(false, state.vision_blocked) + "</p>" +
-                "<p>Spawning test: " + VisionCalculationTestCommons.getTestResult(true, state.spawning) + "</p>";
+            calculation.processAll();
+            //System.Diagnostics.Debug.WriteLine("Processing finished!!");
+
+            return "<h3>THIS SHOULD NOT HAVE ANY VISION BLOCK</h3>" + VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeRegimeCalculationString(calculation);
         }
 
         public String test2()
@@ -42,11 +43,12 @@ namespace BSVisionCalculator.Pages
 
             BloqBloqSituation situation = new BloqBloqSituation(reality, PlayerPosture.CENTRED, 0, blocker, blocked);
 
-            RealTimeVisionState state = new RealTimeVisionState(situation);
+            RealTimeRegimeCalculation calculation = new RealTimeRegimeCalculation(situation);
 
-            return VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeVisionStateString(state) +
-                "<p>Blocked test: " + VisionCalculationTestCommons.getTestResult(true, state.vision_blocked) + "</p>" +
-                "<p>Spawning test: " + VisionCalculationTestCommons.getTestResult(true, state.spawning) + "</p>";
+            calculation.processAll();
+            //System.Diagnostics.Debug.WriteLine("Processing finished!!");
+
+            return "<h3>THIS SHOULD BE VISION BLOCKED AT LEAST DURING SPAWN</h3>" + VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeRegimeCalculationString(calculation);
         }
 
         public String test3()
@@ -59,11 +61,12 @@ namespace BSVisionCalculator.Pages
 
             BloqBloqSituation situation = new BloqBloqSituation(reality, PlayerPosture.CENTRED, 0, blocker, blocked);
 
-            RealTimeVisionState state = new RealTimeVisionState(situation);
+            RealTimeRegimeCalculation calculation = new RealTimeRegimeCalculation(situation);
 
-            return VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeVisionStateString(state) +
-                "<p>Blocked test: " + VisionCalculationTestCommons.getTestResult(true, state.vision_blocked) + "</p>" +
-                "<p>Spawning test: " + VisionCalculationTestCommons.getTestResult(true, state.spawning) + "</p>";         
+            calculation.processAll();
+            //System.Diagnostics.Debug.WriteLine("Processing finished!!");
+
+            return "<h3>THIS SHOULD BE VISION BLOCKED AT LEAST DURING SPAWN</h3>" + VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeRegimeCalculationString(calculation);
         }
 
         public String test4()
@@ -76,13 +79,14 @@ namespace BSVisionCalculator.Pages
 
             BloqBloqSituation situation = new BloqBloqSituation(reality, PlayerPosture.CENTRED, 0, blocker, blocked);
 
-            RealTimeVisionState state = new RealTimeVisionState(situation);
+            RealTimeRegimeCalculation calculation = new RealTimeRegimeCalculation(situation);
 
-            return VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeVisionStateString(state) +
-                "<p>Blocked test: " + VisionCalculationTestCommons.getTestResult(false, state.vision_blocked) + "</p>" +
-                "<p>Spawning test: " + VisionCalculationTestCommons.getTestResult(false, state.spawning) + "</p>";
+            calculation.processAll();
+            //System.Diagnostics.Debug.WriteLine("Processing finished!!");
+
+            return "<h3>THIS SHOULD BE PARALLEL FOR A LONG TIME</h3>" + VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeRegimeCalculationString(calculation);
         }
-
+    
         public String test5()
         {
             // This should be a non-spawning block
@@ -93,11 +97,12 @@ namespace BSVisionCalculator.Pages
 
             BloqBloqSituation situation = new BloqBloqSituation(reality, PlayerPosture.CENTRED, 0, blocker, blocked);
 
-            RealTimeVisionState state = new RealTimeVisionState(situation);
+            RealTimeRegimeCalculation calculation = new RealTimeRegimeCalculation(situation);
 
-            return VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeVisionStateString(state) +
-                "<p>Blocked test: " + VisionCalculationTestCommons.getTestResult(true, state.vision_blocked) + "</p>" +
-                "<p>Spawning test: " + VisionCalculationTestCommons.getTestResult(false, state.spawning) + "</p>";
+            calculation.processAll();
+            //System.Diagnostics.Debug.WriteLine("Processing finished!!");
+
+            return "<h3>THIS SHOULD BE BLOCKED THROUGHOUT</h3>" + VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeRegimeCalculationString(calculation);
         }
         public String test6()
         {
@@ -109,11 +114,12 @@ namespace BSVisionCalculator.Pages
 
             BloqBloqSituation situation = new BloqBloqSituation(reality, PlayerPosture.CENTRED, 0, blocker, blocked);
 
-            RealTimeVisionState state = new RealTimeVisionState(situation);
+            RealTimeRegimeCalculation calculation = new RealTimeRegimeCalculation(situation);
 
-            return VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeVisionStateString(state) +
-                "<p>Blocked test: " + VisionCalculationTestCommons.getTestResult(false, state.vision_blocked) + "</p>" +
-                "<p>Spawning test: " + VisionCalculationTestCommons.getTestResult(false, state.spawning) + "</p>";
+            calculation.processAll();
+            //System.Diagnostics.Debug.WriteLine("Processing finished!!");
+
+            return "<h3>THIS SHOULD BE BLOCKED ONLY WHILE SPAWNING</h3>" + VisionCalculationTestCommons.getBloqBloqSituationString(situation) + VisionCalculationTestCommons.getRealTimeRegimeCalculationString(calculation);
         }
     }
 }

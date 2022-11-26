@@ -19,6 +19,38 @@
             this.y = y;
         }
 
+        public static PlayerPosture fromString(String posture_str)
+        {
+            if(posture_str == "CENTRED")
+            {
+                return CENTRED;
+            }
+            else if(posture_str == "LEFT")
+            {
+                return LEFT;
+            }
+            else if(posture_str == "RIGHT")
+            {
+                return RIGHT;
+            }
+            else if(posture_str == "SQUAT")
+            {
+                return SQUAT;
+            }
+            else if(posture_str == "LEFT_SQUAT")
+            {
+                return LEFT_SQUAT;
+            }
+            else if(posture_str == "RIGHT_SQUAT")
+            {
+                return RIGHT_SQUAT;
+            }
+            else
+            {
+                throw new Exception("Posture description could not be matched!");
+            }
+        }
+
         public static PlayerPosture[] getPostures()
         {
             return new PlayerPosture[] { CENTRED, LEFT, RIGHT, SQUAT, LEFT_SQUAT, RIGHT_SQUAT };

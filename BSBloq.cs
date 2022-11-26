@@ -74,7 +74,7 @@
 
             double height_diff = Math.Abs(this.height - height_row);
 
-            return (height_diff > Math.Max(GlobalParameters.height_row_bottom_mid, GlobalParameters.height_row_mid_top));
+            return (height_diff > Math.Max(GlobalParameters.height_row_bottom_mid, GlobalParameters.height_row_mid_top)*situation.reality.process.proportion_spawn_default);
         }
     }
 }

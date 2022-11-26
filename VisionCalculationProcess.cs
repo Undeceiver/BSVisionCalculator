@@ -13,6 +13,7 @@
             this.width_lean = GlobalParameters.width_lean_default;
             this.width_squatlean = GlobalParameters.width_squatlean_default;
             this.time_granularity = GlobalParameters.time_granularity_default;
+            this.proportion_spawn_default = GlobalParameters.proportion_spawn_default;
 
             this.bpm = bpm;
             this.njs = njs;
@@ -44,6 +45,7 @@
         public double time_inline_last_max; // Maximum amount of time before having to hit a note, for the last time we see an object due to an inline.
         public double time_inline_process_min; // Minimum amount of time that an object needs to remain in vision to be able to process it, in inline cases.
         public double time_granularity; // Granularity of time to consider in calculations and algorithms.
+        public double proportion_spawn_default; // Proportion of the lane distance that the note must be away from its final position to consider it to still be spawning.
 
         /*******************************
         // Map parameters
@@ -53,5 +55,25 @@
         public double hjd; // Half jump duration of the map, after considering offset.
         public double jd; // Jump distance (real one, from the player to the spawn position).
         public double time_reaction; // Reaction time, in the sense of time between an object spawns and it reaches the current time.
+
+        public double beatsToSeconds(double beats)
+        {
+            return beats * 60 / bpm;
+        }
+
+        public double secondsToBeats(double seconds)
+        {
+            return seconds * bpm / 60;
+        }
+
+        public double secondsToMeters(double seconds)
+        {
+            return seconds * njs;
+        }
+
+        public double metersToSeconds(double meters)
+        {
+            return meters / njs;
+        }
     }
 }

@@ -53,6 +53,7 @@ namespace BSVisionCalculator
         public const double time_inline_last_max_wrt_reaction_time_default = 0; // Maximum time that the object can disappear before having to hit it, with respect to the reaction time.
         public const double time_inline_process_min_default = 0; // Minimum amount of time that we need an object to remain in vision to process it, in inline circumstances.
         public const double time_granularity_default = 0.005; // Granularity of time to consider in calculations and algorithms.
+        public const double proportion_spawn_default = 0.45; // Proportion of the lane distance that the note must be away from its final position to consider it to still be spawning.
 
 
         public static double getBlockerTime(BSObject obj)

@@ -44,8 +44,39 @@
         public static String getRealTimeVisionStateString(RealTimeVisionState state)
         {
             return
+                "<p>Player time: " + state.time + "</p>" +
                 "<p>Vision blocked: " + state.vision_blocked + "</p>" +
-                "<p>Spawning: " + state.spawning + "</p>";
+                "<p>Spawning: " + state.spawning + "</p>" +
+                "<p>Preblock: " + state.preblock + "</p>" + 
+                "<p>Postblock: " + state.postblock + "</p>";
+        }
+
+        public static String getRealTimeRegimeCalculationString(RealTimeRegimeCalculation calculation)
+        {
+            String result = "";
+
+            result += "<p>Regime summary:</p>";
+            result += getRealTimeRegimeSummaryString(calculation.getSummary());
+            result += "<p>Regime calculation. " + calculation.states.Count + " states total: </p><ul>";
+            for(int i = 0; i < calculation.states.Count; i++)
+            {
+                result += "<li>" + getRealTimeVisionStateString(calculation.states[i]) + "</li>";
+            }
+            result += "</ul>";
+
+            return result;
+        }        
+
+        public static String getRealTimeRegimeSummaryString(RealTimeRegimeSummary summary)
+        {
+            String result = "";
+
+            for(int i = 0; i < summary.regimes.Count; i++)
+            {
+                result += "<p>Time:" + summary.regimes[i].time_start + " - " + summary.regimes[i].time_end + " | Spawning: " + summary.regimes[i].spawning + "| Vision blocked: " + summary.regimes[i].vision_blocked + "</p>";
+            }
+
+            return result;
         }
 
         public static String getTestResult(Object expected, Object obtained)

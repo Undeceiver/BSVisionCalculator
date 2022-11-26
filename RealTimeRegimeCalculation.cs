@@ -32,6 +32,63 @@
             return new RealTimeVisionState(this.situation);
         }
 
+        // Main loop.
+        public void processAll()
+        {
+            Random rnd = new Random();
+            this.initialize();
+            bool some_change = true;
+            while(some_change)
+            {
+                //System.Diagnostics.Debug.WriteLine("ANOTHER ROUND DOWN THE LOOP");
+                this.updateStates();
+                //System.Diagnostics.Debug.WriteLine("States updated. " + this.states.Count + " states.");
+                this.mergeAll();
+                //System.Diagnostics.Debug.WriteLine("States merged. " + this.states.Count + " states.");
+                //System.Diagnostics.Debug.WriteLine(VisionCalculationTestCommons.getRealTimeRegimeCalculationString(this));
+                some_change = false;
+                // We use random module here to decide where we start the check on each round, to hopefully be more likely to find vision block states earlier.
+                int offset = rnd.Next(this.states.Count);
+                //System.Diagnostics.Debug.WriteLine("Offset: " + offset);
+                for (int i = mathmod(offset + 1,this.states.Count), n = 0; !some_change && n < this.states.Count; i = mathmod(i+1,this.states.Count), n++)
+                {
+                    // We process pairs, so the start we do not compute.
+                    if(i == 0)
+                    {
+                        continue;                        
+                    }
+                    //System.Diagnostics.Debug.WriteLine("About to process pair: " + i);
+                    some_change = this.processPair(i);
+                    //System.Diagnostics.Debug.WriteLine("Pair processed: " + some_change);
+                }
+            }
+        }
+
+        public static int mathmod(int a, int b)
+        {
+            return ((a % b) + b) % b;
+        }        
+
+        public RealTimeRegimeSummary getSummary()
+        {
+            RealTimeRegimeSummary result = new RealTimeRegimeSummary();
+            RealTimeRegime previous = new RealTimeRegime(this.states[0].spawning, this.states[0].vision_blocked, this.states[0].time);
+            result.regimes.Add(previous);
+            for(int i = 1; i < this.states.Count; i++)
+            {
+                RealTimeRegime current = new RealTimeRegime(this.states[i].spawning, this.states[i].vision_blocked, this.states[i].time);
+                if(current.spawning != previous.spawning || current.vision_blocked != previous.vision_blocked)
+                {
+                    previous.time_end = this.states[i].time;
+                    previous = current;
+                    result.regimes.Add(current);
+                }
+            }
+            previous.time_end = this.states[this.states.Count - 1].time;
+            
+            return result;
+        }
+
         // This returns true if and only if some change is performed on the list of states (and thus we have to restart the checks).
         // i should be the index of next, which is also where we would insert the middle point.
         // This function may add a middle point, but nothing else.
@@ -215,8 +272,92 @@
                 }
             }
         }
-    }
 
-    // Missing here: Merge more than two consecutive with same situation.
-    // Missing here: Update pre-block and post-block.
+        public void mergeAll()
+        {
+            // We assume there is always at least two states.
+            RealTimeVisionState last = this.states[0];
+            int equal_count = 1;
+            for (int i = 1; i < this.states.Count; i++)
+            {
+                RealTimeVisionState cur = this.states[i];
+                // We can only assume they're equal if we know if they're pre-, post- or during block.
+                if(cur.spawning == last.spawning && cur.vision_blocked == last.vision_blocked && cur.postblock == last.postblock && cur.preblock == last.preblock && (cur.vision_blocked || cur.postblock || last.postblock))
+                {
+                    equal_count++;
+                    if(equal_count > 2)
+                    {
+                        // Remove the previous one and reduce the count.
+                        this.states.RemoveAt(i - 1);
+                        // In place modification of the list, adjust the index.
+                        i--;
+                        equal_count--;
+                    }                    
+                }
+                else
+                {
+                    equal_count = 1;
+                }
+
+                last = cur;
+            }
+        }
+
+        public void updateStates()
+        {
+            // We assume spawning and non-spawning always work properly (All spawning before all spawning).
+
+            // It's simple really:
+            //  - Find states that are vision_blocked. For each of those, they're either spawning or non-spawning.
+            //  - Every non-vision block state before a spawning vision block is pre-block.
+            //  - Every non-vision block spawning state after a spawning vision block is post-block.
+            //  - Every non-vision block non-spawning state before a non-spawning vision block is pre-block.
+            //  - Every non-vision block state after a non-spawning vision block is post-block.
+            for(int i = 0; i < this.states.Count; i++)
+            {
+                RealTimeVisionState cur = this.states[i];
+                if(cur.vision_blocked)
+                {
+                    if(cur.spawning)
+                    {
+                        for(int j = 0; j < i; j++)
+                        {
+                            RealTimeVisionState pre = this.states[j];
+                            if(!pre.vision_blocked)
+                            {
+                                pre.preblock = true;
+                            }
+                        }
+                        for(int j = i+1; j < this.states.Count; j++)
+                        {
+                            RealTimeVisionState post = this.states[j];
+                            if(!post.vision_blocked && post.spawning)
+                            {
+                                post.postblock = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 0; j < i; j++)
+                        {
+                            RealTimeVisionState pre = this.states[j];
+                            if (!pre.vision_blocked && !pre.spawning)
+                            {
+                                pre.preblock = true;
+                            }
+                        }
+                        for (int j = i + 1; j < this.states.Count; j++)
+                        {
+                            RealTimeVisionState post = this.states[j];
+                            if (!post.vision_blocked)
+                            {
+                                post.postblock = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -22,6 +22,26 @@ namespace BSVisionCalculator
 
         }
 
+        public static BSRow fromString(String row_str)
+        {
+            if(row_str == "BOTTOM")
+            {
+                return BOTTOM;
+            }
+            else if(row_str == "MID")
+            {
+                return MID;
+            }
+            else if(row_str == "TOP")
+            {
+                return TOP;
+            }
+            else
+            {
+                throw new Exception("Row description cannot be solved!");
+            }
+        }
+
         private static double getRowHeight(int index)
         {
             double height = 0;
