@@ -28,6 +28,7 @@
             this.time_inline_first_min = GlobalParameters.time_inline_first_min_default;
             this.time_inline_last_max = GlobalParameters.time_inline_last_max_wrt_reaction_time_default + this.time_reaction;
             this.time_inline_process_min = GlobalParameters.time_inline_process_min_default;
+            this.time_last_counted = GlobalParameters.time_last_counted_default;
         }
 
         /*******************************
@@ -44,6 +45,7 @@
         public double time_inline_first_min; // Minimum amount of time before having to hit a note, that we need to see an object for the first time, before it reaches us.
         public double time_inline_last_max; // Maximum amount of time before having to hit a note, for the last time we see an object due to an inline.
         public double time_inline_process_min; // Minimum amount of time that an object needs to remain in vision to be able to process it, in inline cases.
+        public double time_last_counted; // Any vision happening closer than this to the player is not counted for the above parameters.
         public double time_granularity; // Granularity of time to consider in calculations and algorithms.
         public double proportion_spawn_default; // Proportion of the lane distance that the note must be away from its final position to consider it to still be spawning.
 

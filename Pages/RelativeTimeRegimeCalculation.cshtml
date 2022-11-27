@@ -1,11 +1,11 @@
 ﻿@page
-@model BSVisionCalculator.Pages.RealTimeRegimeCalculationModel
+@model BSVisionCalculator.Pages.RelativeTimeRegimeCalculationModel
 @{
-    ViewData["Title"] = "Calculate real time vision regimes (bloq-bloq)";
+    ViewData["Title"] = "Calculate relative time vision regimes (bloq-bloq)";
 }
 
 <div class="dataform" content="width=device-width">
-    <h1 class="formtitle">Real Time Vision Regimes (bloq-bloq)</h1>
+    <h1 class="formtitle">Relative Timing Vision Regimes (bloq-bloq)</h1>
     <form method="post">
         <h2>Map parameters</h2>
         <fieldset id="map">
@@ -43,11 +43,6 @@
                 <option value="RIGHT_SQUAT">Crouching right</option>
             </select>
         </p>
-        <h2>Relative position</h2>
-        <p class="formfield">
-            <label>Time between blocks (beats)</label>
-            <input type="number" name="time_distance" step="0.01" min="0" max="100000" value="0.5"/>
-        </p>
         <h2>Blocker bloq (in front)</h2>
         <p class="formfield">
             <label>Lane</label>
@@ -84,7 +79,37 @@
                 <option value="TOP">Top</option>
             </select>
         </p>
-        <button class="btn btn-primary" id="submit">Calculate Vision</button>
+        <h2>Vision tolerance ranges</h2>
+        <p> (Hard block) parameters are relevant for hard vision blocks (centre cells) and (Inline) parameters are relevant for anything else.</p>
+        <p class="formfield">
+            <label>Relevant vision time (ms) <span title="The object being visible when less than this time close to the player will not be counted as last seen or as time to process it.">&#9432;</span></label>
+            <input type="number" name="time_last_counted" step="5" min="0" max="150000" value="@ViewData["time_last_counted_default"]" />
+        </p>
+        <p class="formfield">
+            <label>First vision MIN (hard block) (ms) <span title="The first time a hard vision blocked object becomes visible needs to be more than this time before reaching that object.">&#9432;</span></label>
+            <input type="number" name="time_hardvb_first_min" step="5" min="0" max="150000" value="@ViewData["time_hardvb_first_min_default"]" />
+        </p>
+        <p class="formfield">
+            <label>Last vision MAX (hard block) (ms) <span title="The last time a hard vision blocked object is visible inside the relevant vision range needs to be less than this time before reaching that object.">&#9432;</span></label>
+            <input type="number" name="time_hardvb_last_max" step="5" min="0" max="150000" value="@ViewData["time_hardvb_last_max_default"]" />
+        </p>
+        <p class="formfield">
+            <label>MIN process time (hard block) (ms) <span title="The hard vision blocked object needs to be in vision within the relevant range for more than this amount of time.">&#9432;</span></label>
+            <input type="number" name="time_hardvb_process_min" step="5" min="0" max="150000" value="@ViewData["time_hardvb_process_min_default"]" />
+        </p>
+        <p class="formfield">
+            <label>First vision MIN (inline) (ms) <span title="The first time an inline object becomes fully visible needs to be more than this time before reaching that object.">&#9432;</span></label>
+            <input type="number" name="time_inline_first_min" step="5" min="0" max="150000" value="@ViewData["time_inline_first_min_default"]" />
+        </p>
+        <p class="formfield">
+            <label>Last vision MAX (inline) (ms) <span title="The last time an inline object is fully visible inside the relevant vision range needs to be less than this time before reaching that object.">&#9432;</span></label>
+            <input type="number" name="time_inline_last_max" step="5" min="0" max="150000" value="@ViewData["time_inline_last_max_default"]" />
+        </p>
+        <p class="formfield">
+            <label>MIN process time (inline) (ms) <span title="The inline object needs to be in vision within the relevant range for more than this amount of time.">&#9432;</span></label>
+            <input type="number" name="time_inline_process_min" step="5" min="0" max="150000" value="@ViewData["time_inline_process_min_default"]" />
+        </p>
+        <button class="btn btn-primary" id="submit">Calculate Relative Timing Regimes</button>
     </form>
 </div>
 <div id="result">
@@ -114,7 +139,7 @@
         $(function () {
             $('#submit').on('click', function (evt) {
                 evt.preventDefault();
-                $.post('/RealTimeRegimeCalculationAjax', $('form').serialize(), function (data) {
+                $.post('/RelativeTimeRegimeCalculationAjax', $('form').serialize(), function (data) {
                     $('#result').replaceWith(data)
                 });
             });

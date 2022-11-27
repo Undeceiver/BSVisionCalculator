@@ -1,11 +1,11 @@
 ﻿@page
-@model BSVisionCalculator.Pages.RealTimeRegimeCalculationWallModel
+@model BSVisionCalculator.Pages.RelativeTimeRegimeCalculationWallModel
 @{
-    ViewData["Title"] = "Calculate real time vision regimes (wall-bloq)";
+    ViewData["Title"] = "Calculate relative time vision regimes (wall-bloq)";
 }
 
 <div class="dataform" content="width=device-width">
-    <h1 class="formtitle">Real Time Vision Regimes (wall-bloq)</h1>
+    <h1 class="formtitle">Relative Timing Vision Regimes (wall-bloq)</h1>
     <form method="post">
         <h2>Map parameters</h2>
         <fieldset id="map">
@@ -43,11 +43,6 @@
                 <option value="RIGHT_SQUAT">Crouching right</option>
             </select>
         </p>
-        <h2>Relative position</h2>
-        <p class="formfield">
-            <label>Time between objects (beats)</label>
-            <input type="number" name="time_distance" step="0.01" min="0" max="100000" value="0.5"/>
-        </p>
         <h2>Blocker wall (in front)</h2>
         <p class="formfield">
             <label>Left-most Lane</label>
@@ -69,12 +64,12 @@
         </p>
         <p class="formfield">
             <label>Base Height</label>
-            <select name="blocker_bottom_height">                
+            <select name="blocker_bottom_height">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
-                <option value="4">4</option>                
+                <option value="4">4</option>
             </select>
         </p>
         <p class="formfield">
@@ -109,7 +104,24 @@
                 <option value="TOP">Top</option>
             </select>
         </p>
-        <button class="btn btn-primary" id="submit">Calculate Vision</button>
+        <h2>Vision tolerance ranges</h2>
+        <p class="formfield">
+            <label>Relevant vision time (ms) <span title="The object being visible when less than this time close to the player will not be counted as last seen or as time to process it.">&#9432;</span></label>
+            <input type="number" name="time_last_counted" step="5" min="0" max="150000" value="@ViewData["time_last_counted_default"]" />
+        </p>
+        <p class="formfield">
+            <label>First vision MIN (ms) <span title="The first time a hard vision blocked object becomes visible needs to be more than this time before reaching that object.">&#9432;</span></label>
+            <input type="number" name="time_hardvb_first_min" step="5" min="0" max="150000" value="@ViewData["time_hardvb_first_min_default"]" />
+        </p>
+        <p class="formfield">
+            <label>Last vision MAX (ms) <span title="The last time a hard vision blocked object is visible inside the relevant vision range needs to be less than this time before reaching that object.">&#9432;</span></label>
+            <input type="number" name="time_hardvb_last_max" step="5" min="0" max="150000" value="@ViewData["time_hardvb_last_max_default"]" />
+        </p>
+        <p class="formfield">
+            <label>MIN process time (ms) <span title="The hard vision blocked object needs to be in vision within the relevant range for more than this amount of time.">&#9432;</span></label>
+            <input type="number" name="time_hardvb_process_min" step="5" min="0" max="150000" value="@ViewData["time_hardvb_process_min_default"]" />
+        </p>        
+        <button class="btn btn-primary" id="submit">Calculate Relative Timing Regimes</button>
     </form>
 </div>
 <div id="result">
@@ -139,7 +151,7 @@
         $(function () {
             $('#submit').on('click', function (evt) {
                 evt.preventDefault();
-                $.post('/RealTimeRegimeCalculationWallAjax', $('form').serialize(), function (data) {
+                $.post('/RelativeTimeRegimeCalculationWallAjax', $('form').serialize(), function (data) {
                     $('#result').replaceWith(data)
                 });
             });

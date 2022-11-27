@@ -75,6 +75,6 @@
         public String changeString(double time_diff, double total_time_diff)
         {
             return "After approximately " + timeString(time_diff) + " (" + timeString(total_time_diff) + " total)";
-        }
+        }        
     }
 }
