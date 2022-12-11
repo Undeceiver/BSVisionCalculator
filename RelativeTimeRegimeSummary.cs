@@ -9,7 +9,7 @@
             this.regimes = new List<RelativeTimeRegime>();
         }
 
-        public String toString(VisionCalculationProcess process)
+        public String toHtml(VisionCalculationProcess process)
         {
             String result = "";
 

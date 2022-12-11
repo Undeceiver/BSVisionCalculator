@@ -61,7 +61,7 @@ namespace BSVisionCalculator.Pages
 
             calculation.processAll();
 
-            ViewData["result"] = calculation.getSummary().toString(process);
+            ViewData["result"] = calculation.getSummary().toHtml(process);
         }        
     }
 }

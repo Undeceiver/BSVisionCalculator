@@ -1,0 +1,66 @@
+﻿@page
+@model BSVisionCalculator.Pages.RelativePositionsCalculationAjaxModel
+@{
+    Layout = "_Ajax_Layout";
+}
+
+<div id="result">
+    <h2>Safe ranges on any posture <span title="These are safe ranges for any two bloqs or a wall and bloq in the left half of vision. For the right half, consider the symmetric situation. More precise information for more specific situations can be found below.">&#9432;</span></h2>
+    <div>
+        <h3>Any two bloqs</h3>
+        <div class="regimesummary">
+            @Html.Raw(ViewData["overall_bloqbloq"])
+        </div>
+    </div>
+    <div>
+        <h3>Any wall and bloq</h3>
+        <div class="regimesummary">        
+            @Html.Raw(ViewData["overall_wallbloq"])
+        </div>
+    </div>
+    <div>   
+        <div class="tabs">
+            <button class="tablinks active" onclick="openPostureTab(event, 'centred')" id="defaultOpen">Centred</button>
+            <button class="tablinks" onclick="openPostureTab(event, 'lean_left')">Lean left</button>
+            <button class="tablinks" onclick="openPostureTab(event, 'lean_right')">Lean Right</button>
+            <button class="tablinks" onclick="openPostureTab(event, 'squat')">Squat</button>
+            <button class="tablinks" onclick="openPostureTab(event, 'squat_left')">Squat Left</button>
+            <button class="tablinks" onclick="openPostureTab(event, 'squat_right')">Squat Right</button>
+        </div>
+        <div id="posture" class="tabcontent">
+        </div>
+        <div id="posture_centred" hidden>
+            <div>
+                <h3>Any two bloqs</h3>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["centred_bloqbloq"])
+                </div>
+            </div>
+            <div>
+                <h3>Any wall and bloq</h3>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["centred_wallbloq"])
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        function openPostureTab(event, tabName)
+        {
+            $('#posture').html($('#posture_'+tabName).html());
+            
+            if(event.currentTarget != null)
+            {
+                $('.tablinks').removeClass('active');                        
+                        
+                event.currentTarget.className += " active";
+            }
+        }
+    </script>
+    <script>
+        $('#defaultOpen').click();
+    </script>
+}

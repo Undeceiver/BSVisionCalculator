@@ -22,7 +22,7 @@
         }
 
         // The list must be non-empty. We could use a "zero" summary, but this is just a slippery slope.
-        public RelativeTimeRegimeSummary mergePositions(List<RelativeBloqBloqPositionSummary> positions)
+        public static RelativeTimeRegimeSummary mergePositions(List<RelativeBloqBloqPositionSummary> positions)
         {
             if(positions.Count == 0)
             {
@@ -40,7 +40,7 @@
         }
 
         // The list must be non-empty. We could use a "zero" summary, but this is just a slippery slope.
-        public RelativeTimeRegimeSummary mergePositions(List<RelativeWallBloqPositionSummary> positions)
+        public static RelativeTimeRegimeSummary mergePositions(List<RelativeWallBloqPositionSummary> positions)
         {
             if (positions.Count == 0)
             {
@@ -68,6 +68,11 @@
         }
 
         // Some predicates
+        public static bool allBloqBloq(RelativeBloqBloqPositionSummary pos)
+        {
+            return true;
+        }
+
         public static bool hardVBBloqBloqFilter(RelativeBloqBloqPositionSummary pos)
         {
             return (pos.blocker_bloq.lane.width == BSLane.NEAR_LEFT.width && pos.blocker_bloq.row.height == BSRow.MID.height);
@@ -88,7 +93,21 @@
         {
             return (!hardVBBloqBloqFilter(pos) && !centralBloqBloqFilter(pos) && !strictInlineBloqBloqFilter(pos));
         }
+        
+        public static bool byPostureBloqBloqFilter(PlayerPosture posture, RelativeBloqBloqPositionSummary pos)
+        {
+            return (pos.posture.x == posture.x && pos.posture.y == posture.y);
+        }
 
+        public static Predicate<RelativeBloqBloqPositionSummary> byPostureBloqBloqFilter(PlayerPosture posture)
+        {
+            return ((pos) => byPostureBloqBloqFilter(posture, pos));
+        }               
+
+        public static bool allWallBloq(RelativeWallBloqPositionSummary pos)
+        {
+            return true;
+        }
         public static bool fullWallBloqFilter(RelativeWallBloqPositionSummary pos)
         {
             return (pos.blocker_wall.height_bottom == 0 && pos.blocker_wall.height_top >= 3 && pos.blocker_wall.lane_right.width >= BSLane.NEAR_LEFT.width);
@@ -109,7 +128,22 @@
             return (pos.blocker_wall.height_top <= 2);
         }
 
+        public static Predicate<T> andFilter<T>(Predicate<T> p1, Predicate<T> p2)
+        {
+            return ((t) => p1(t) && p2(t));
+        }
+
         // The three above should cover everything relevant, so no need for the complement.
+
+        public static bool byPostureWallBloqFilter(PlayerPosture posture, RelativeWallBloqPositionSummary pos)
+        {
+            return (pos.posture.x == posture.x && pos.posture.y == posture.y);
+        }
+
+        public static Predicate<RelativeWallBloqPositionSummary> byPostureWallBloqFilter(PlayerPosture posture)
+        {
+            return ((pos) => byPostureWallBloqFilter(posture, pos));
+        }
 
         public void processAll()
         {
