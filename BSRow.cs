@@ -71,5 +71,25 @@ namespace BSVisionCalculator
         {
             return reality.height_player_effective + this.height;
         }
+
+        public int getIndex()
+        {
+            if (this.height == BSRow.BOTTOM.height)
+            {
+                return 0;
+            }
+            else if (this.height == BSRow.MID.height)
+            {
+                return 1;
+            }
+            else if (this.height == BSRow.TOP.height)
+            {
+                return 2;
+            }
+            else
+            {
+                throw new Exception("This row does not have standard row index.");
+            }
+        }
     }
 }

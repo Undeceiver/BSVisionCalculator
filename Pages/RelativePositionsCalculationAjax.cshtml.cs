@@ -41,8 +41,23 @@ namespace BSVisionCalculator.Pages
 
             ViewData["overall_bloqbloq"] = RelativePositionsSummary.mergePositions(summary.filterBloqBloqPositions(RelativePositionsSummary.allBloqBloq)).toHtml(process);
             ViewData["overall_wallbloq"] = RelativePositionsSummary.mergePositions(summary.filterWallBloqPositions(RelativePositionsSummary.allWallBloq)).toHtml(process);
+
             ViewData["centred_bloqbloq"] = RelativePositionsSummary.mergePositions(summary.filterBloqBloqPositions(RelativePositionsSummary.byPostureBloqBloqFilter(PlayerPosture.CENTRED))).toHtml(process);
             ViewData["centred_wallbloq"] = RelativePositionsSummary.mergePositions(summary.filterWallBloqPositions(RelativePositionsSummary.byPostureWallBloqFilter(PlayerPosture.CENTRED))).toHtml(process);
+            ViewData["left_bloqbloq"] = RelativePositionsSummary.mergePositions(summary.filterBloqBloqPositions(RelativePositionsSummary.byPostureBloqBloqFilter(PlayerPosture.LEFT))).toHtml(process);
+            ViewData["left_wallbloq"] = RelativePositionsSummary.mergePositions(summary.filterWallBloqPositions(RelativePositionsSummary.byPostureWallBloqFilter(PlayerPosture.LEFT))).toHtml(process);
+            ViewData["right_bloqbloq"] = RelativePositionsSummary.mergePositions(summary.filterBloqBloqPositions(RelativePositionsSummary.byPostureBloqBloqFilter(PlayerPosture.RIGHT))).toHtml(process);
+            ViewData["right_wallbloq"] = RelativePositionsSummary.mergePositions(summary.filterWallBloqPositions(RelativePositionsSummary.byPostureWallBloqFilter(PlayerPosture.RIGHT))).toHtml(process);
+            ViewData["squat_bloqbloq"] = RelativePositionsSummary.mergePositions(summary.filterBloqBloqPositions(RelativePositionsSummary.byPostureBloqBloqFilter(PlayerPosture.SQUAT))).toHtml(process);
+            ViewData["squat_wallbloq"] = RelativePositionsSummary.mergePositions(summary.filterWallBloqPositions(RelativePositionsSummary.byPostureWallBloqFilter(PlayerPosture.SQUAT))).toHtml(process);
+            ViewData["squat_left_bloqbloq"] = RelativePositionsSummary.mergePositions(summary.filterBloqBloqPositions(RelativePositionsSummary.byPostureBloqBloqFilter(PlayerPosture.LEFT_SQUAT))).toHtml(process);
+            ViewData["squat_left_wallbloq"] = RelativePositionsSummary.mergePositions(summary.filterWallBloqPositions(RelativePositionsSummary.byPostureWallBloqFilter(PlayerPosture.LEFT_SQUAT))).toHtml(process);
+            ViewData["squat_right_bloqbloq"] = RelativePositionsSummary.mergePositions(summary.filterBloqBloqPositions(RelativePositionsSummary.byPostureBloqBloqFilter(PlayerPosture.RIGHT_SQUAT))).toHtml(process);
+            ViewData["squat_right_wallbloq"] = RelativePositionsSummary.mergePositions(summary.filterWallBloqPositions(RelativePositionsSummary.byPostureWallBloqFilter(PlayerPosture.RIGHT_SQUAT))).toHtml(process);
+
+            List<RelativeBloqBloqPositionSummary> hardVBPositions = summary.filterBloqBloqPositions(RelativePositionsSummary.andFilter(RelativePositionsSummary.byPostureBloqBloqFilter(PlayerPosture.CENTRED), RelativePositionsSummary.hardVBBloqBloqFilter));
+            ViewData["centred_hardvb"] = RelativePositionsSummary.mergePositions(hardVBPositions).toHtml(process);
+            ViewData["centred_hardvb_example"] = hardVBPositions[0].situationHtml();
         }        
     }
 }

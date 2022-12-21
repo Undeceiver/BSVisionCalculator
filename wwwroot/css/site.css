@@ -68,3 +68,29 @@ input {
     border: 1px solid #ccc;
     border-radius: 8px;
 }
+
+.situation {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 50px 1fr;
+}
+
+.situation_cell {
+    border: 1px solid #000;    
+}
+
+.front_bloq {
+    margin-left: 225px;
+    margin-top: 25px;
+}
+
+.back_bloq {
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.situation_bloq {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

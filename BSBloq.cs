@@ -19,7 +19,7 @@
         public double getRowHeight()
         {
             return this.row.getRealHeight(this.situation.reality);
-        }
+        }      
 
         public override void updatePosition(VisionCalculationSituation situation)
         {

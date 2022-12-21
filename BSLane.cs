@@ -44,5 +44,29 @@
         {
 
         }
+
+        public int getIndex()
+        {
+            if (this.width == FAR_LEFT.width)
+            {
+                return 0;
+            }
+            else if (this.width == NEAR_LEFT.width)
+            {
+                return 1;
+            }
+            else if (this.width == NEAR_RIGHT.width)
+            {
+                return 2;
+            }
+            else if (this.width == FAR_RIGHT.width)
+            {
+                return 3;
+            }
+            else
+            {
+                throw new Exception("This lane does not have standard lane index.");
+            }
+        }
     }
 }
