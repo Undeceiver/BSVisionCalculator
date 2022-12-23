@@ -11,10 +11,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="images\" />
+    <Folder Include="wwwroot\images\" />
     <Folder Include="Pages\Shared\Components\" />
     <Folder Include="Services\" />
     <Folder Include="ViewComponents\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\blue.jpg" />
+    <None Include="wwwroot\images\red.jpg" />
   </ItemGroup>
 
 </Project>

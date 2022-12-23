@@ -20,12 +20,12 @@
     </div>
     <div>   
         <div class="tabs">
-            <button class="tablinks active" onclick="openPostureTab(event, 'centred')" id="defaultOpen">Centred</button>
-            <button class="tablinks" onclick="openPostureTab(event, 'lean_left')">Lean left</button>
-            <button class="tablinks" onclick="openPostureTab(event, 'lean_right')">Lean Right</button>
-            <button class="tablinks" onclick="openPostureTab(event, 'squat')">Squat</button>
-            <button class="tablinks" onclick="openPostureTab(event, 'squat_left')">Squat Left</button>
-            <button class="tablinks" onclick="openPostureTab(event, 'squat_right')">Squat Right</button>
+            <button class="tablinks posturetablinks tab_posture_centred active defaultOpen" onclick="openPostureTab(event, 'centred')">Centred</button>
+            <button class="tablinks posturetablinks tab_posture_lean_left" onclick="openPostureTab(event, 'lean_left')">Lean left</button>
+            <button class="tablinks posturetablinks tab_posture_lean_right" onclick="openPostureTab(event, 'lean_right')">Lean Right</button>
+            <button class="tablinks posturetablinks tab_posture_squat" onclick="openPostureTab(event, 'squat')">Squat</button>
+            <button class="tablinks posturetablinks tab_posture_squat_left" onclick="openPostureTab(event, 'squat_left')">Squat Left</button>
+            <button class="tablinks posturetablinks tab_posture_squat_right" onclick="openPostureTab(event, 'squat_right')">Squat Right</button>
         </div>
         <div id="posture" class="tabcontent">
         </div>
@@ -42,13 +42,27 @@
                     @Html.Raw(ViewData["centred_wallbloq"])
                 </div>
             </div>
-            <div id="posture_centred_category_hardvb">
-                <h3>Hard VB general</h3>
+            <div class="tabs">
+                <button class="tablinks categorytablinks tab_category_hardvb active defaultOpen" onclick="openCategoryTab(event, 'hardvb')">Hard VB</button>
+                <button class="tablinks categorytablinks tab_category_near_lanes" onclick="openCategoryTab(event, 'near_lanes')">Near lanes</button>
+                <button class="tablinks categorytablinks tab_category_inlines" onclick="openCategoryTab(event, 'inlines')">Inlines</button>
+                <button class="tablinks categorytablinks tab_category_other_bloqs" onclick="openCategoryTab(event, 'other_bloqs')">Other bloq-bloq</button>
+                <button class="tablinks categorytablinks tab_category_full_wall" onclick="openCategoryTab(event, 'full_wall')">Full wall</button>
+                <button class="tablinks categorytablinks tab_category_squat_wall" onclick="openCategoryTab(event, 'squat_wall')">Squat wall</button>
+                <button class="tablinks categorytablinks tab_category_full_side_wall" onclick="openCategoryTab(event, 'full_side_wall')">Side wall</button>
+                <button class="tablinks categorytablinks tab_category_half_side_wall" onclick="openCategoryTab(event, 'half_side_wall')">Half side wall</button>
+                <button class="tablinks categorytablinks tab_category_full_centre_wall" onclick="openCategoryTab(event, 'full_centre_wall')">Centre wall</button>
+                <button class="tablinks categorytablinks tab_category_half_centre_wall" onclick="openCategoryTab(event, 'half_centre_wall')">Half centre wall</button>
+                <button class="tablinks categorytablinks tab_category_low_walls" onclick="openCategoryTab(event, 'low_walls')">Low walls</button>
+            </div>
+            <div class="tabcontent posture_centred_category">
+            </div>
+            <div id="posture_centred_category_hardvb" hidden>
                 <div class="regimesummary">
                     @Html.Raw(ViewData["centred_hardvb"])
-                </div>
+                </div>                
                 <div>
-                    @Html.Raw(ViewData["centred_hardvb_example"])
+                    @Html.Raw(ViewData["centred_hardvb_positions"])
                 </div>
             </div>
         </div>
@@ -133,13 +147,25 @@
             
             if(event.currentTarget != null)
             {
-                $('.tablinks').removeClass('active');                        
+                $('.posturetablinks').removeClass('active');                        
                         
-                event.currentTarget.className += " active";
+                //event.currentTarget.className += " active";
+                $('.tab_posture_' + tabName).addClass('active');
+            }
+        }
+
+        function openCategoryTab(event, tabName) {
+            $('.posture_centred_category').html($('#posture_centred_category_' + tabName).html());
+
+            if (event.currentTarget != null) {
+                $('.categorytablinks').removeClass('active');
+
+                //event.currentTarget.className += " active";
+                $('.tab_category_' + tabName).addClass('active');
             }
         }
     </script>
     <script>
-        $('#defaultOpen').click();
+        $('.defaultOpen').click();
     </script>
 }

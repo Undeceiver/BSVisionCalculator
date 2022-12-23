@@ -69,28 +69,48 @@ input {
     border-radius: 8px;
 }
 
+.situation_summary {
+    display: grid;
+    grid-template-columns: 275px 1fr;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
 .situation {
     display: grid;
-    grid-template-columns: 50px 1fr;
-    grid-template-rows: 50px 1fr;
+    grid-template-columns: 100px 20px 100px;
+    grid-template-rows: 75px;
+    width: 220px;
+    height: 75px;
 }
 
 .situation_cell {
-    border: 1px solid #000;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+    width: 25px;
+    height: 25px;
 }
 
-.front_bloq {
-    margin-left: 225px;
-    margin-top: 25px;
+.situation_arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.back_bloq {
-    margin-left: 0px;
-    margin-top: 0px;
+.front_grid {
+    display: grid;
+    width: 100px;
+    height: 75px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
-.situation_bloq {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.back_grid {
+    display: grid;
+    width: 100px;
+    height: 75px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }

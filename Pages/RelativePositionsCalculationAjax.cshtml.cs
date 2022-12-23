@@ -57,7 +57,12 @@ namespace BSVisionCalculator.Pages
 
             List<RelativeBloqBloqPositionSummary> hardVBPositions = summary.filterBloqBloqPositions(RelativePositionsSummary.andFilter(RelativePositionsSummary.byPostureBloqBloqFilter(PlayerPosture.CENTRED), RelativePositionsSummary.hardVBBloqBloqFilter));
             ViewData["centred_hardvb"] = RelativePositionsSummary.mergePositions(hardVBPositions).toHtml(process);
-            ViewData["centred_hardvb_example"] = hardVBPositions[0].situationHtml();
+            String centred_hardvb_positions = "";
+            foreach (RelativeBloqBloqPositionSummary hardVBPosition in hardVBPositions)
+            {
+                centred_hardvb_positions += hardVBPosition.situationHtml(process);
+            }
+            ViewData["centred_hardvb_positions"] = centred_hardvb_positions;
         }        
     }
 }
