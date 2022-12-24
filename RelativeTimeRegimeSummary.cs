@@ -20,7 +20,7 @@
                 double time_start_beats = process.secondsToBeats(cur.time_start);
                 double time_end_beats = process.secondsToBeats(cur.time_end);
 
-                result = result + "<p>When the objects are between " + time_start_beats + " and " + time_end_beats + " beats apart, " + okText(cur.ok) + "</p>";
+                result = result + "<p>When the objects are between <strong>" + Math.Round(time_start_beats,2) + "</strong> and <strong>" + Math.Round(time_end_beats,2) + "</strong> beats apart, " + okText(cur.ok) + "</p>";
             }
 
             return result;

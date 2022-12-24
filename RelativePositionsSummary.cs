@@ -110,22 +110,22 @@
         }
         public static bool fullWallBloqFilter(RelativeWallBloqPositionSummary pos)
         {
-            return (pos.blocker_wall.height_bottom == 0 && pos.blocker_wall.height_top >= 3 && pos.blocker_wall.lane_right.width >= BSLane.NEAR_LEFT.width);
+            return (pos.blocker_wall.height_level_bottom.index == 0 && pos.blocker_wall.height_level_top.index >= 3 && pos.blocker_wall.lane_right.width >= BSLane.NEAR_LEFT.width);
         }
 
         public static bool squatWallBloqFilter(RelativeWallBloqPositionSummary pos)
         {
-            return (pos.blocker_wall.height_bottom == 2 && pos.blocker_wall.height_top >= 3 && pos.blocker_wall.lane_right.width >= BSLane.NEAR_LEFT.width);
+            return (pos.blocker_wall.height_level_bottom.index == 2 && pos.blocker_wall.height_level_top.index >= 3 && pos.blocker_wall.lane_right.width >= BSLane.NEAR_LEFT.width);
         }
 
         public static bool sideWallBloqFilter(RelativeWallBloqPositionSummary pos)
         {
-            return (pos.blocker_wall.lane_right.width <= BSLane.NEAR_LEFT.width);
+            return (pos.blocker_wall.lane_right.width <= BSLane.FAR_LEFT.width && pos.blocker_wall.height_level_top.index >= 3);
         }
 
         public static bool lowWallBloqFilter(RelativeWallBloqPositionSummary pos)
         {
-            return (pos.blocker_wall.height_top <= 2);
+            return (pos.blocker_wall.height_level_top.index <= 2);
         }
 
         public static Predicate<T> andFilter<T>(Predicate<T> p1, Predicate<T> p2)

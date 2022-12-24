@@ -35,35 +35,35 @@
             <label>Player height (maximum)</label>
             <input type="number" name="height_player_max" step="0.1" min="0.5" max="4" value="2" />
         </p>
-        <h2>Vision tolerance ranges</h2>
+        <h2>Vision tolerance ranges <button class="btn btn-primary" id="refresh_vision_tolerance">&#8634;</button></h2>
         <p> (Hard block) parameters are relevant for hard vision blocks (centre cells) and (Inline) parameters are relevant for anything else.</p>
         <p class="formfield">
             <label>Relevant vision time (ms) <span title="The object being visible when less than this time close to the player will not be counted as last seen or as time to process it.">&#9432;</span></label>
-            <input type="number" name="time_last_counted" step="5" min="0" max="150000" value="@ViewData["time_last_counted_default"]" />
+            <input type="number" name="time_last_counted" id="time_last_counted" step="5" min="0" max="150000" value="@ViewData["time_last_counted_default"]" />
         </p>
         <p class="formfield">
             <label>First vision MIN (hard block) (ms) <span title="The first time a hard vision blocked object becomes visible needs to be more than this time before reaching that object.">&#9432;</span></label>
-            <input type="number" name="time_hardvb_first_min" step="5" min="0" max="150000" value="@ViewData["time_hardvb_first_min_default"]" />
+            <input type="number" name="time_hardvb_first_min" id="time_hardvb_first_min" step="5" min="0" max="150000" value="@ViewData["time_hardvb_first_min_default"]" />
         </p>
         <p class="formfield">
             <label>Last vision MAX (hard block) (ms) <span title="The last time a hard vision blocked object is visible inside the relevant vision range needs to be less than this time before reaching that object.">&#9432;</span></label>
-            <input type="number" name="time_hardvb_last_max" step="5" min="0" max="150000" value="@ViewData["time_hardvb_last_max_default"]" />
+            <input type="number" name="time_hardvb_last_max" id="time_hardvb_last_max" step="5" min="0" max="150000" value="@ViewData["time_hardvb_last_max_default"]" />
         </p>
         <p class="formfield">
             <label>MIN process time (hard block) (ms) <span title="The hard vision blocked object needs to be in vision within the relevant range for more than this amount of time.">&#9432;</span></label>
-            <input type="number" name="time_hardvb_process_min" step="5" min="0" max="150000" value="@ViewData["time_hardvb_process_min_default"]" />
+            <input type="number" name="time_hardvb_process_min" id="time_hardvb_process_min" step="5" min="0" max="150000" value="@ViewData["time_hardvb_process_min_default"]" />
         </p>
         <p class="formfield">
             <label>First vision MIN (inline) (ms) <span title="The first time an inline object becomes fully visible needs to be more than this time before reaching that object.">&#9432;</span></label>
-            <input type="number" name="time_inline_first_min" step="5" min="0" max="150000" value="@ViewData["time_inline_first_min_default"]" />
+            <input type="number" name="time_inline_first_min" id="time_inline_first_min" step="5" min="0" max="150000" value="@ViewData["time_inline_first_min_default"]" />
         </p>
         <p class="formfield">
             <label>Last vision MAX (inline) (ms) <span title="The last time an inline object is fully visible inside the relevant vision range needs to be less than this time before reaching that object.">&#9432;</span></label>
-            <input type="number" name="time_inline_last_max" step="5" min="0" max="150000" value="@ViewData["time_inline_last_max_default"]" />
+            <input type="number" name="time_inline_last_max" id="time_inline_last_max" step="5" min="0" max="150000" value="@ViewData["time_inline_last_max_default"]" />
         </p>
         <p class="formfield">
             <label>MIN process time (inline) (ms) <span title="The inline object needs to be in vision within the relevant range for more than this amount of time.">&#9432;</span></label>
-            <input type="number" name="time_inline_process_min" step="5" min="0" max="150000" value="@ViewData["time_inline_process_min_default"]" />
+            <input type="number" name="time_inline_process_min" id="time_inline_process_min" step="5" min="0" max="150000" value="@ViewData["time_inline_process_min_default"]" />
         </p>
         <button class="btn btn-primary" id="submit">Calculate Vision</button>
     </form>
@@ -87,6 +87,19 @@
             $('#hjd').on('change', function (evt) {
                 $.post('/ReactionTimeAjax', $('form').serialize(), function (data) {
                     $('#rt').replaceWith(data)
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#refresh_vision_tolerance').on('click', function (evt) {
+                evt.preventDefault();
+                $.post('/HardVBFirstMinAjax', $('form').serialize(), function (data) {
+                    $('#time_hardvb_first_min').replaceWith(data)
+                });
+                $.post('/InlineLastMaxAjax', $('form').serialize(), function (data) {
+                    $('#time_inline_last_max').replaceWith(data)
                 });
             });
         });

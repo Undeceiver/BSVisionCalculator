@@ -70,15 +70,15 @@
 
             if (hardvb)
             {
-                this.ok_first = (this.time_first > process.time_hardvb_first_min);
-                this.ok_last = (this.time_last < process.time_hardvb_last_max);
-                this.ok_process = (this.time_process > process.time_hardvb_process_min);
+                this.ok_first = (this.time_first >= process.time_hardvb_first_min);
+                this.ok_last = (this.time_last <= process.time_hardvb_last_max);
+                this.ok_process = (this.time_process >= process.time_hardvb_process_min);
             }
             else
             {
-                this.ok_first = (this.time_first > process.time_inline_first_min);
-                this.ok_last = (this.time_last < process.time_inline_last_max);
-                this.ok_process = (this.time_process > process.time_inline_process_min);
+                this.ok_first = (this.time_first >= process.time_inline_first_min);
+                this.ok_last = (this.time_last <= process.time_inline_last_max);
+                this.ok_process = (this.time_process >= process.time_inline_process_min);
             }
         }
 

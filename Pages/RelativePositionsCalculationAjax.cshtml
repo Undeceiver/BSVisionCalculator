@@ -49,11 +49,8 @@
                 <button class="tablinks categorytablinks tab_category_other_bloqs" onclick="openCategoryTab(event, 'other_bloqs')">Other bloq-bloq</button>
                 <button class="tablinks categorytablinks tab_category_full_wall" onclick="openCategoryTab(event, 'full_wall')">Full wall</button>
                 <button class="tablinks categorytablinks tab_category_squat_wall" onclick="openCategoryTab(event, 'squat_wall')">Squat wall</button>
-                <button class="tablinks categorytablinks tab_category_full_side_wall" onclick="openCategoryTab(event, 'full_side_wall')">Side wall</button>
-                <button class="tablinks categorytablinks tab_category_half_side_wall" onclick="openCategoryTab(event, 'half_side_wall')">Half side wall</button>
-                <button class="tablinks categorytablinks tab_category_full_centre_wall" onclick="openCategoryTab(event, 'full_centre_wall')">Centre wall</button>
-                <button class="tablinks categorytablinks tab_category_half_centre_wall" onclick="openCategoryTab(event, 'half_centre_wall')">Half centre wall</button>
-                <button class="tablinks categorytablinks tab_category_low_walls" onclick="openCategoryTab(event, 'low_walls')">Low walls</button>
+                <button class="tablinks categorytablinks tab_category_side_wall" onclick="openCategoryTab(event, 'side_wall')">Side wall</button>
+                <button class="tablinks categorytablinks tab_category_low_wall" onclick="openCategoryTab(event, 'low_wall')">Low walls</button>
             </div>
             <div class="tabcontent posture_centred_category">
             </div>
@@ -63,6 +60,62 @@
                 </div>                
                 <div>
                     @Html.Raw(ViewData["centred_hardvb_positions"])
+                </div>
+            </div>
+            <div id="posture_centred_category_near_lanes" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["centred_near_lanes"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["centred_near_lanes_positions"])
+                </div>
+            </div>
+            <div id="posture_centred_category_inlines" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["centred_inlines"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["centred_inlines_positions"])
+                </div>
+            </div>
+            <div id="posture_centred_category_other_bloqs" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["centred_other_bloqs"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["centred_other_bloqs_positions"])
+                </div>
+            </div>
+            <div id="posture_centred_category_full_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["centred_full_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["centred_full_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_centred_category_squat_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["centred_squat_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["centred_squat_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_centred_category_side_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["centred_side_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["centred_side_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_centred_category_low_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["centred_low_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["centred_low_wall_positions"])
                 </div>
             </div>
         </div>
@@ -79,6 +132,82 @@
                     @Html.Raw(ViewData["left_wallbloq"])
                 </div>
             </div>
+            <div class="tabs">
+                <button class="tablinks categorytablinks tab_category_hardvb active defaultOpen" onclick="openCategoryTab(event, 'hardvb')">Hard VB</button>
+                <button class="tablinks categorytablinks tab_category_near_lanes" onclick="openCategoryTab(event, 'near_lanes')">Near lanes</button>
+                <button class="tablinks categorytablinks tab_category_inlines" onclick="openCategoryTab(event, 'inlines')">Inlines</button>
+                <button class="tablinks categorytablinks tab_category_other_bloqs" onclick="openCategoryTab(event, 'other_bloqs')">Other bloq-bloq</button>
+                <button class="tablinks categorytablinks tab_category_full_wall" onclick="openCategoryTab(event, 'full_wall')">Full wall</button>
+                <button class="tablinks categorytablinks tab_category_squat_wall" onclick="openCategoryTab(event, 'squat_wall')">Squat wall</button>
+                <button class="tablinks categorytablinks tab_category_side_wall" onclick="openCategoryTab(event, 'side_wall')">Side wall</button>
+                <button class="tablinks categorytablinks tab_category_low_wall" onclick="openCategoryTab(event, 'low_wall')">Low walls</button>
+            </div>
+            <div class="tabcontent posture_lean_left_category">
+            </div>
+            <div id="posture_lean_left_category_hardvb" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_left_hardvb"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_left_hardvb_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_left_category_near_lanes" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_left_near_lanes"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_left_near_lanes_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_left_category_inlines" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_left_inlines"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_left_inlines_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_left_category_other_bloqs" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_left_other_bloqs"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_left_other_bloqs_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_left_category_full_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_left_full_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_left_full_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_left_category_squat_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_left_squat_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_left_squat_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_left_category_side_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_left_side_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_left_side_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_left_category_low_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_left_low_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_left_low_wall_positions"])
+                </div>
+            </div>
         </div>
         <div id="posture_lean_right" hidden>
             <div>
@@ -91,6 +220,82 @@
                 <h3>Any wall and bloq</h3>
                 <div class="regimesummary">
                     @Html.Raw(ViewData["right_wallbloq"])
+                </div>
+            </div>
+            <div class="tabs">
+                <button class="tablinks categorytablinks tab_category_hardvb active defaultOpen" onclick="openCategoryTab(event, 'hardvb')">Hard VB</button>
+                <button class="tablinks categorytablinks tab_category_near_lanes" onclick="openCategoryTab(event, 'near_lanes')">Near lanes</button>
+                <button class="tablinks categorytablinks tab_category_inlines" onclick="openCategoryTab(event, 'inlines')">Inlines</button>
+                <button class="tablinks categorytablinks tab_category_other_bloqs" onclick="openCategoryTab(event, 'other_bloqs')">Other bloq-bloq</button>
+                <button class="tablinks categorytablinks tab_category_full_wall" onclick="openCategoryTab(event, 'full_wall')">Full wall</button>
+                <button class="tablinks categorytablinks tab_category_squat_wall" onclick="openCategoryTab(event, 'squat_wall')">Squat wall</button>
+                <button class="tablinks categorytablinks tab_category_side_wall" onclick="openCategoryTab(event, 'side_wall')">Side wall</button>
+                <button class="tablinks categorytablinks tab_category_low_wall" onclick="openCategoryTab(event, 'low_wall')">Low walls</button>
+            </div>
+            <div class="tabcontent posture_lean_right_category">
+            </div>
+            <div id="posture_lean_right_category_hardvb" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_right_hardvb"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_right_hardvb_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_right_category_near_lanes" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_right_near_lanes"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_right_near_lanes_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_right_category_inlines" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_right_inlines"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_right_inlines_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_right_category_other_bloqs" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_right_other_bloqs"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_right_other_bloqs_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_right_category_full_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_right_full_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_right_full_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_right_category_squat_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_right_squat_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_right_squat_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_right_category_side_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_right_side_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_right_side_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_lean_right_category_low_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["lean_right_low_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["lean_right_low_wall_positions"])
                 </div>
             </div>
         </div>
@@ -107,6 +312,82 @@
                     @Html.Raw(ViewData["squat_wallbloq"])
                 </div>
             </div>
+            <div class="tabs">
+                <button class="tablinks categorytablinks tab_category_hardvb active defaultOpen" onclick="openCategoryTab(event, 'hardvb')">Hard VB</button>
+                <button class="tablinks categorytablinks tab_category_near_lanes" onclick="openCategoryTab(event, 'near_lanes')">Near lanes</button>
+                <button class="tablinks categorytablinks tab_category_inlines" onclick="openCategoryTab(event, 'inlines')">Inlines</button>
+                <button class="tablinks categorytablinks tab_category_other_bloqs" onclick="openCategoryTab(event, 'other_bloqs')">Other bloq-bloq</button>
+                <button class="tablinks categorytablinks tab_category_full_wall" onclick="openCategoryTab(event, 'full_wall')">Full wall</button>
+                <button class="tablinks categorytablinks tab_category_squat_wall" onclick="openCategoryTab(event, 'squat_wall')">Squat wall</button>
+                <button class="tablinks categorytablinks tab_category_side_wall" onclick="openCategoryTab(event, 'side_wall')">Side wall</button>
+                <button class="tablinks categorytablinks tab_category_low_wall" onclick="openCategoryTab(event, 'low_wall')">Low walls</button>
+            </div>
+            <div class="tabcontent posture_squat_category">
+            </div>
+            <div id="posture_squat_category_hardvb" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_hardvb"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_hardvb_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_category_near_lanes" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_near_lanes"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_near_lanes_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_category_inlines" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_inlines"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_inlines_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_category_other_bloqs" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_other_bloqs"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_other_bloqs_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_category_full_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_full_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_full_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_category_squat_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_squat_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_squat_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_category_side_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_side_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_side_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_category_low_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_low_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_low_wall_positions"])
+                </div>
+            </div>
         </div>
         <div id="posture_squat_left" hidden>
             <div>
@@ -121,6 +402,82 @@
                     @Html.Raw(ViewData["squat_left_wallbloq"])
                 </div>
             </div>
+            <div class="tabs">
+                <button class="tablinks categorytablinks tab_category_hardvb active defaultOpen" onclick="openCategoryTab(event, 'hardvb')">Hard VB</button>
+                <button class="tablinks categorytablinks tab_category_near_lanes" onclick="openCategoryTab(event, 'near_lanes')">Near lanes</button>
+                <button class="tablinks categorytablinks tab_category_inlines" onclick="openCategoryTab(event, 'inlines')">Inlines</button>
+                <button class="tablinks categorytablinks tab_category_other_bloqs" onclick="openCategoryTab(event, 'other_bloqs')">Other bloq-bloq</button>
+                <button class="tablinks categorytablinks tab_category_full_wall" onclick="openCategoryTab(event, 'full_wall')">Full wall</button>
+                <button class="tablinks categorytablinks tab_category_squat_wall" onclick="openCategoryTab(event, 'squat_wall')">Squat wall</button>
+                <button class="tablinks categorytablinks tab_category_side_wall" onclick="openCategoryTab(event, 'side_wall')">Side wall</button>
+                <button class="tablinks categorytablinks tab_category_low_wall" onclick="openCategoryTab(event, 'low_wall')">Low walls</button>
+            </div>
+            <div class="tabcontent posture_squat_left_category">
+            </div>
+            <div id="posture_squat_left_category_hardvb" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_left_hardvb"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_left_hardvb_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_left_category_near_lanes" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_left_near_lanes"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_left_near_lanes_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_left_category_inlines" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_left_inlines"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_left_inlines_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_left_category_other_bloqs" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_left_other_bloqs"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_left_other_bloqs_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_left_category_full_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_left_full_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_left_full_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_left_category_squat_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_left_squat_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_left_squat_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_left_category_side_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_left_side_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_left_side_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_left_category_low_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_left_low_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_left_low_wall_positions"])
+                </div>
+            </div>
         </div>
         <div id="posture_squat_right" hidden>
             <div>
@@ -133,6 +490,82 @@
                 <h3>Any wall and bloq</h3>
                 <div class="regimesummary">
                     @Html.Raw(ViewData["squat_right_wallbloq"])
+                </div>
+            </div>
+            <div class="tabs">
+                <button class="tablinks categorytablinks tab_category_hardvb active defaultOpen" onclick="openCategoryTab(event, 'hardvb')">Hard VB</button>
+                <button class="tablinks categorytablinks tab_category_near_lanes" onclick="openCategoryTab(event, 'near_lanes')">Near lanes</button>
+                <button class="tablinks categorytablinks tab_category_inlines" onclick="openCategoryTab(event, 'inlines')">Inlines</button>
+                <button class="tablinks categorytablinks tab_category_other_bloqs" onclick="openCategoryTab(event, 'other_bloqs')">Other bloq-bloq</button>
+                <button class="tablinks categorytablinks tab_category_full_wall" onclick="openCategoryTab(event, 'full_wall')">Full wall</button>
+                <button class="tablinks categorytablinks tab_category_squat_wall" onclick="openCategoryTab(event, 'squat_wall')">Squat wall</button>
+                <button class="tablinks categorytablinks tab_category_side_wall" onclick="openCategoryTab(event, 'side_wall')">Side wall</button>
+                <button class="tablinks categorytablinks tab_category_low_wall" onclick="openCategoryTab(event, 'low_wall')">Low walls</button>
+            </div>
+            <div class="tabcontent posture_squat_right_category">
+            </div>
+            <div id="posture_squat_right_category_hardvb" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_right_hardvb"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_right_hardvb_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_right_category_near_lanes" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_right_near_lanes"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_right_near_lanes_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_right_category_inlines" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_right_inlines"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_right_inlines_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_right_category_other_bloqs" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_right_other_bloqs"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_right_other_bloqs_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_right_category_full_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_right_full_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_right_full_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_right_category_squat_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_right_squat_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_right_squat_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_right_category_side_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_right_side_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_right_side_wall_positions"])
+                </div>
+            </div>
+            <div id="posture_squat_right_category_low_wall" hidden>
+                <div class="regimesummary">
+                    @Html.Raw(ViewData["squat_right_low_wall"])
+                </div>
+                <div>
+                    @Html.Raw(ViewData["squat_right_low_wall_positions"])
                 </div>
             </div>
         </div>
@@ -156,6 +589,11 @@
 
         function openCategoryTab(event, tabName) {
             $('.posture_centred_category').html($('#posture_centred_category_' + tabName).html());
+            $('.posture_lean_left_category').html($('#posture_lean_left_category_' + tabName).html());
+            $('.posture_lean_right_category').html($('#posture_lean_right_category_' + tabName).html());
+            $('.posture_squat_category').html($('#posture_squat_category_' + tabName).html());
+            $('.posture_squat_left_category').html($('#posture_squat_left_category_' + tabName).html());
+            $('.posture_squat_right_category').html($('#posture_squat_right_category_' + tabName).html());
 
             if (event.currentTarget != null) {
                 $('.categorytablinks').removeClass('active');
