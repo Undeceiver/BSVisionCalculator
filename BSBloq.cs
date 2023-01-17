@@ -48,10 +48,10 @@
         }
         public override void updateAngleValues(VisionCalculationSituation situation)
         {
-            double width_left = this.width - GlobalParameters.size_bloq / 2;
-            double width_right = this.width + GlobalParameters.size_bloq / 2;
-            double height_top = this.height + GlobalParameters.size_bloq / 2;
-            double height_bottom = this.height - GlobalParameters.size_bloq / 2;
+            double width_left = this.width - situation.reality.process.size_bloq / 2;
+            double width_right = this.width + situation.reality.process.size_bloq / 2;
+            double height_top = this.height + situation.reality.process.size_bloq / 2;
+            double height_bottom = this.height - situation.reality.process.size_bloq / 2;
             // Ignore depth
             double depth_start = this.depth; //- GlobalParameters.size_bloq / 2;
             double depth_end = this.depth; // + GlobalParameters.size_bloq / 2;

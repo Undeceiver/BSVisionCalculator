@@ -10,33 +10,35 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">BSVisionCalculator</a>                
+                <a class="navbar-brand" asp-area="" asp-page="/RelativePositionsCalculation">BSVisionCalculator</a>
+                <a asp-page="/Help"><img class="help-icon" src="images/help.png" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Tests</a>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/RelativePositionsCalculation">Vision Summary</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/RealTimeRegimeCalculation">Real Time Vision Regimes (Bloq-Bloq)</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/RelativeTimeRegimeCalculation">Specific positions (bloq-bloq)</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/RealTimeRegimeCalculationWall">Real Time Vision Regimes (Wall-Bloq)</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/RelativeTimeRegimeCalculationWall">Specific positions (wall-bloq)</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/RelativeTimeRegimeCalculation">Relative Time Vision Regimes (Bloq-Bloq)</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/RealTimeRegimeCalculation">Specific positions and times (bloq-bloq)</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/RelativeTimeRegimeCalculationWall">Relative Time Vision Regimes (Wall-Bloq)</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/RealTimeRegimeCalculationWall">Specific positions and times (wall-bloq)</a>
                         </li>
+
                         <!--<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li> -->

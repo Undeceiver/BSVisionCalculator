@@ -15,6 +15,8 @@
             this.time_granularity = GlobalParameters.time_granularity_default;
             this.proportion_spawn_default = GlobalParameters.proportion_spawn_default;
 
+            this.size_bloq = GlobalParameters.size_bloq;
+
             this.bpm = bpm;
             this.njs = njs;
             this.hjd = hjd;
@@ -48,6 +50,8 @@
         public double time_last_counted; // Any vision happening closer than this to the player is not counted for the above parameters.
         public double time_granularity; // Granularity of time to consider in calculations and algorithms.
         public double proportion_spawn_default; // Proportion of the lane distance that the note must be away from its final position to consider it to still be spawning.
+
+        public double size_bloq;
 
         /*******************************
         // Map parameters
