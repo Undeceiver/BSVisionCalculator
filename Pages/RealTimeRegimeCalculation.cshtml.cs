@@ -20,7 +20,12 @@ namespace BSVisionCalculator.Pages
 
         public void OnGet()
         {
-            ViewData["result"] = "Haven't done anything yet";
+            ViewData["height_squat_default"] = GlobalParameters.height_squat_default;
+            ViewData["width_lean_default"] = GlobalParameters.width_lean_default;
+            ViewData["width_squatlean_default"] = GlobalParameters.width_squatlean_default;
+            ViewData["time_granularity_default"] = GlobalParameters.time_granularity_default;
+            ViewData["proportion_spawn_default"] = GlobalParameters.proportion_spawn_default;
+            ViewData["size_bloq_default"] = GlobalParameters.size_bloq;
         }        
     }
 }

@@ -34,15 +34,24 @@ form {
     display: table;
 }
 
-p {
+.formfield {
     display: table-row;
 }
 
-label {
+.p-checkbox{
+    display: inline-block;
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.formfield label {
     display: table-cell;
 }
 
-input {
+.formfield input {
     display: table-cell;
 }
 

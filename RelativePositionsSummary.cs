@@ -147,6 +147,8 @@
 
         public void processAll()
         {
+            this.process.recalculatePostures();
+
             this.positions_bloqbloq.Clear();
             this.positions_wallbloq.Clear();
 

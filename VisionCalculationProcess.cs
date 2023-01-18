@@ -13,7 +13,7 @@
             this.width_lean = GlobalParameters.width_lean_default;
             this.width_squatlean = GlobalParameters.width_squatlean_default;
             this.time_granularity = GlobalParameters.time_granularity_default;
-            this.proportion_spawn_default = GlobalParameters.proportion_spawn_default;
+            this.proportion_spawn = GlobalParameters.proportion_spawn_default;
 
             this.size_bloq = GlobalParameters.size_bloq;
 
@@ -49,7 +49,7 @@
         public double time_inline_process_min; // Minimum amount of time that an object needs to remain in vision to be able to process it, in inline cases.
         public double time_last_counted; // Any vision happening closer than this to the player is not counted for the above parameters.
         public double time_granularity; // Granularity of time to consider in calculations and algorithms.
-        public double proportion_spawn_default; // Proportion of the lane distance that the note must be away from its final position to consider it to still be spawning.
+        public double proportion_spawn; // Proportion of the lane distance that the note must be away from its final position to consider it to still be spawning.
 
         public double size_bloq;
 
@@ -80,6 +80,16 @@
         public double metersToSeconds(double meters)
         {
             return meters / njs;
+        }
+
+        public void recalculatePostures()
+        {
+            PlayerPosture.CENTRED = new PlayerPosture(GlobalParameters.width_centre, 0);
+            PlayerPosture.LEFT = new PlayerPosture(GlobalParameters.width_centre - this.width_lean, 0);
+            PlayerPosture.RIGHT = new PlayerPosture(GlobalParameters.width_centre + this.width_lean, 0);
+            PlayerPosture.SQUAT = new PlayerPosture(GlobalParameters.width_centre, -this.height_squat);
+            PlayerPosture.LEFT_SQUAT = new PlayerPosture(GlobalParameters.width_centre - this.width_squatlean, -this.height_squat);
+            PlayerPosture.RIGHT_SQUAT = new PlayerPosture(GlobalParameters.width_centre + this.width_squatlean, -this.height_squat);    
         }
     }
 }

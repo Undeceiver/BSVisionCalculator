@@ -33,6 +33,13 @@ namespace BSVisionCalculator.Pages
             ViewData["time_inline_first_min_default"] = GlobalParameters.time_inline_first_min_default * 1000;
             ViewData["time_inline_last_max_default"] = GlobalParameters.time_inline_last_max_wrt_reaction_time_default * 1000 + 625;
             ViewData["time_inline_process_min_default"] = GlobalParameters.time_inline_process_min_default * 1000;
+
+            ViewData["height_squat_default"] = GlobalParameters.height_squat_default;
+            ViewData["width_lean_default"] = GlobalParameters.width_lean_default;
+            ViewData["width_squatlean_default"] = GlobalParameters.width_squatlean_default;
+            ViewData["time_granularity_default"] = GlobalParameters.time_granularity_default;
+            ViewData["proportion_spawn_default"] = GlobalParameters.proportion_spawn_default;
+            ViewData["size_bloq_default"] = GlobalParameters.size_bloq;
         }        
     }
 }

@@ -13,7 +13,7 @@
         public static PlayerPosture LEFT_SQUAT = new PlayerPosture(GlobalParameters.width_centre - GlobalParameters.width_squatlean_default, -GlobalParameters.height_squat_default);
         public static PlayerPosture RIGHT_SQUAT = new PlayerPosture(GlobalParameters.width_centre + GlobalParameters.width_squatlean_default, -GlobalParameters.height_squat_default);
 
-        private PlayerPosture(double x, double y) // y is relative to camera position
+        public PlayerPosture(double x, double y) // y is relative to camera position
         {
             this.x = x;
             this.y = y;

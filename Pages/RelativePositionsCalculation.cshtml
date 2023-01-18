@@ -8,7 +8,6 @@
     <h1 class="formtitle">Vision Summary</h1>
     <form method="post">
         <h2>Map parameters</h2>
-        <fieldset id="map">
         <p class="formfield">
             <label>BPM</label>
             <input type="number" name="bpm" id="bpm" step="0.001" min="1" max="10000" value="120"/>
@@ -25,7 +24,6 @@
             <label>Reaction time (ms)</label>
             <input type="number" name="rt" id="rt" value="625" disabled/>
         </p>
-        </fieldset>
         <h2>Player parameters</h2>
         <p class="formfield">
             <label>Player height (minimum)</label>
@@ -36,7 +34,8 @@
             <input type="number" name="height_player_max" step="0.1" min="0.5" max="4" value="2.2" />
         </p>
         <h2>Vision tolerance ranges <button class="btn btn-primary" id="refresh_vision_tolerance">&#8634;</button></h2>
-        <p> (Hard block) parameters are relevant for hard vision blocks (centre cells) and (Inline) parameters are relevant for anything else.</p>
+        <p>(Hard block) parameters are relevant for hard vision blocks (centre cells).</p>
+        <p>(Inline) parameters are relevant for anything else.</p>
         <p class="formfield">
             <label>Relevant vision time (ms) <span title="The object being visible when less than this time close to the player will not be counted as last seen or as time to process it.">&#9432;</span></label>
             <input type="number" name="time_last_counted" id="time_last_counted" step="5" min="0" max="150000" value="@ViewData["time_last_counted_default"]" />
@@ -65,6 +64,85 @@
             <label>MIN process time (inline) (ms) <span title="The inline object needs to be in vision within the relevant range for more than this amount of time.">&#9432;</span></label>
             <input type="number" name="time_inline_process_min" id="time_inline_process_min" step="5" min="0" max="150000" value="@ViewData["time_inline_process_min_default"]" />
         </p>
+        <p class="p-checkbox">
+            <input type="checkbox" id="advanced_parameters_box" value="advanced_parameters" />
+            <label for="advanced_parameters_box">Advanced configuration parameters (not recommended) <span title="You should not need to change these parameters. Do so only if you know exactly what you are doing.">&#9432;</span></label>
+        </p>
+        <div id="advanced_parameters" style="display:table;" hidden>
+            <h4>Posture parameters</h4>
+            <p class="formfield">
+                <label>Lean distance <span title="How many meters does leaning displace the player horizontally.">&#9432;</span></label>
+                <input type="number" name="width_lean" id="width_lean" step="0.05" min="0" max="2" value="@ViewData["width_lean_default"]"/>
+            </p>
+            <p class="formfield">
+                <label>Squat height <span title="How many meters does squatting displace the player vertically.">&#9432;</span></label>
+                <input type="number" name="height_squat" id="height_squat" step="0.05" min="0" max="2" value="@ViewData["height_squat_default"]" />
+            </p>
+            <p class="formfield">
+                <label>Squat lean distance <span title="How many meters does leaning while squatting displace the player horizontally.">&#9432;</span></label>
+                <input type="number" name="width_squatlean" id="width_squatlean" step="0.05" min="0" max="2" value="@ViewData["width_squatlean_default"]" />
+            </p>
+            <h4>Approximate parameters</h4>
+            <p class="formfield">
+                <label>Bloq size <span title="How large is the relevant portion (for vision purposes) of a bloq. In meters. A full block is 0.5m wide, but we only consider a part of it for vision.">&#9432;</span></label>
+                <input type="number" name="size_bloq" id="size_bloq" step="0.01" min="0" max="0.75" value="@ViewData["size_bloq_default"]" />
+            </p>
+            <p class="formfield">
+                <label>Spawn animation threshold (0-1) <span title="What proportion of the distance between two lanes does a bloq need to be away from its final position to consider it to still be spawning. A too large value here will produce significant errors in the calculations. A too small value here will slow down the calculations.">&#9432;</span></label>
+                <input type="number" name="proportion_spawn" id="proportion_spawn" step="0.001" min="0" max="1" value="@ViewData["proportion_spawn_default"]" />
+            </p>
+            <h4>Process details</h4>
+            <p class="formfield">
+                <label>Time granularity <span title="What is the shortest amount of time considered (in seconds). A larger value will speed up the process but be more imprecise to the point of significant errors. A smaller value will increase precision but slow down the process.">&#9432;</span></label>
+                <input type="number" name="time_granularity" id="time_granularity" step="0.0001" min="0" max="0.5" value="@ViewData["time_granularity_default"]" />
+            </p>
+            <h4>Game constants <span title="These values cannot be currently modified. They are NOT approximations but rather exact values taken from the game.">&#9432;</span></h4>
+            <p class="formfield">
+                <label>Standard player height <span title="The basic player height from which all other height parameters are calculated.">&#9432;</span></label>
+                <input type="number" name="height_player_std" id="height_player_std" value="1.8" disabled/>
+            </p>
+            <p class="formfield">
+                <label>Player height difference multiplier <span title="Player height difference from the standard will be multiplied by this factor in all calculations.">&#9432;</span></label>
+                <input type="number" name="height_player_mult" id="height_player_mult" value="0.5" disabled />
+            </p>
+            <p class="formfield">
+                <label>Minimum effective player height <span title="The effective player height used in calculations will never be smaller than this.">&#9432;</span></label>
+                <input type="number" name="height_player_absolute_min" id="height_player_absolute_min" value="1.6" disabled />
+            </p>
+            <p class="formfield">
+                <label>Maximum effective player height <span title="The effective player height used in calculations will never be larger than this.">&#9432;</span></label>
+                <input type="number" name="height_player_absolute_max" id="height_player_absolute_max" value="2.4" disabled />
+            </p>
+            <p class="formfield">
+                <label>Relative camera height <span title="The player's height is considered to be this amount above the camera's position.">&#9432;</span></label>
+                <input type="number" name="height_player_above_camera" id="height_player_above_camera" value="0.1" disabled />
+            </p>
+            <p class="formfield">
+                <label>Playline depth <span title="When a note is meant to be played, it will be this distance in front of the player (meters).">&#9432;</span></label>
+                <input type="number" name="depth_playline" id="depth_playline" value="0.65" disabled />
+            </p>            
+            <p class="formfield">
+                <label>Minimum wall height <span title="All bottom vanilla walls have their base start from this height above the floor.">&#9432;</span></label>
+                <input type="number" name="height_wall_min" id="height_wall_min" value="0.1" disabled />
+            </p>
+            <p class="formfield">
+                <label>Wall level height <span title="Each wall height level is this vertical size (before adjustments for player height)">&#9432;</span></label>
+                <input type="number" name="height_wall_level" id="height_wall_level" value="0.6" disabled />
+            </p>
+            <p class="formfield">
+                <label>Lane width <span title="Each lane is this distance wide (meters)">&#9432;</span></label>
+                <input type="number" name="width_lane" id="width_lane" value="0.6" disabled />
+            </p>
+            <p class="formfield">
+                <label>Bottom-to-mid height<span title="Distance between the centre of bottom row and the centre of mid row (meters)">&#9432;</span></label>
+                <input type="number" name="height_row_bottom_mid" id="height_row_bottom_mid" value="0.55" disabled />
+            </p>
+            <p class="formfield">
+                <label>Mid-to-top height<span title="Distance between the centre of mid row and the centre of top row (meters)">&#9432;</span></label>
+                <input type="number" name="height_row_mid_top" id="height_row_mid_top" value="0.5" disabled />
+            </p>
+        </div>
+        <br />
         <button class="btn btn-primary" id="submit">Calculate Vision</button>
     </form>
 </div>
@@ -114,5 +192,20 @@
                 });
             });
         });
+    </script>
+    <script>
+        $(function () {
+            $('#advanced_parameters_box').on('change', function() {
+                var ischecked = $(this).is(':checked');
+                if(!ischecked)
+                {
+                    $('#advanced_parameters').attr('hidden', true);
+                }
+                else
+                {
+                    $('#advanced_parameters').removeAttr('hidden');                    
+                }
+            });
+        })
     </script>
 }
