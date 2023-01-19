@@ -48,10 +48,10 @@ namespace BSVisionCalculator
         public const double width_squatlean_default = 0.4; // Horizontal displacement due to leaning.
         public const double time_hardvb_first_min_wrt_reaction_time_default = -0.1; // Default for the minimum first visualization time, with respect to the reaction time.
         public const double time_hardvb_last_max_default = 0.2; // Maximum time that the object can disappear before having to hit it.
-        public const double time_hardvb_process_min_default = 0.2; // Minimum amount of time that we need an object to remain in vision to process it.
+        public const double time_hardvb_process_min_default = 0.35; // Minimum amount of time that we need an object to remain in vision to process it.
         public const double time_inline_first_min_default = 0.1; // Minimum amount of time for first visualization for inlines.
         public const double time_inline_last_max_wrt_reaction_time_default = -0.1; // Maximum time that the object can disappear before having to hit it, with respect to the reaction time.
-        public const double time_inline_process_min_default = 0.1; // Minimum amount of time that we need an object to remain in vision to process it, in inline circumstances.
+        public const double time_inline_process_min_default = 0.2; // Minimum amount of time that we need an object to remain in vision to process it, in inline circumstances.
         public const double time_last_counted_default = 0.1; // Any vision happening closer than this to the player is not counted for the above parameters.
         public const double time_granularity_default = 0.005; // Granularity of time to consider in calculations and algorithms.
         public const double proportion_spawn_default = 0.45; // Proportion of the lane distance that the note must be away from its final position to consider it to still be spawning.
